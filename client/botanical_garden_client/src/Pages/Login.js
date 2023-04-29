@@ -18,10 +18,11 @@ export default function Login(){
     return (
         <div id="loginPage">
 
-            <div id="container" onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <div id="container" onMouseEnter={handleMouseEnter}>
+
                 <div id="text">Grădina Botanică Alexandru Borza</div>
 
-                <div id="loginForm" style={{ display: showLoginForm ? 'block' : 'none' }}>
+                <div id="loginForm" style={{ display: showLoginForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
                     <div id="credentials">
                         <div className="form-floating mb-3">
                             <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
