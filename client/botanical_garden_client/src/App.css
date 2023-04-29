@@ -11,11 +11,9 @@
   background-position: center;
 }
 
-#loginPage h1 {
-  margin-top: 0;
-}
 
 #loginForm {
+  display: none;
   position: absolute;
   top: 50%;
   left: 50%;
@@ -26,6 +24,7 @@
   margin-top: 2%;
 
 }
+
 
 #credentials{
   display: flex;
@@ -48,22 +47,11 @@
 }
 
 
-
 #loginForm .btn {
   width: 100%;
   margin: 1%;
 }
 
-
-#loginForm h1,
-#loginForm h2 {
-  text-align: center;
-  color: #EAEAEA
-}
-
-#loginForm h2 {
-  margin-bottom: 10%;
-}
 
 #text {
   background-color: white;
