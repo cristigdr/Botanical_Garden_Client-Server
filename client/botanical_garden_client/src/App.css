@@ -72,10 +72,11 @@
 
 #guestPage {
   height: 100vh;
-  width: 100vw;
   background-image: url("../public/images/AdobeStock_532064812_Preview.jpg");
   background-size: cover;
   background-position: center;
+  background-repeat: repeat-y;
+  overflow-y: scroll;
 }
 
 
@@ -87,24 +88,21 @@
   font-weight: bold;
   margin: 0 auto;
   text-align: center;
-  position: absolute;
+  position: relative;
   top: 5%;
-  left: 50%;
-  transform: translate( -50%);
   mix-blend-mode: screen;
 
 }
 
 #searchForm {
   display: block;
-  position: absolute;
+  position: relative;
   width: 30%;
-  border-radius: 10px;
-  top: 37%;
+  top: 25%;
   left: 50%;
   transform: translate(-50%, -50%);
-}
 
+}
 
 
 #input-container {
@@ -112,6 +110,7 @@
   grid-template-columns: repeat(10, 1fr);
   grid-gap: 3%;
   align-items: center;
+
 }
 
 .form-floating {
@@ -135,3 +134,27 @@
   width: 100%;
 }
 
+#cardGroup {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5%;
+  width: 100%;
+  max-width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+  margin-top: ${showSearchForm ? '200px' : '100px'};
+
+}
+
+#cardGroup > * {
+  margin-bottom: 5%;
+}
+
+
+
+img {
+  width: 200px;
+  height: 150px;
+}
