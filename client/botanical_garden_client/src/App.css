@@ -53,20 +53,85 @@
 }
 
 
-#text {
+#loginPage .text {
   background-color: white;
   color: black;
   font-size: 4.5vw;
   width: 75%;
   font-weight: bold;
   margin: 0 auto;
-  padding: 10px;
+  padding: 0.5%;
   text-align: center;
   position: absolute;
   top: 20%;
   left: 50%;
   transform: translate( -50%);
   mix-blend-mode: screen;
+
 }
 
+#guestPage {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../public/images/AdobeStock_532064812_Preview.jpg");
+  background-size: cover;
+  background-position: center;
+}
+
+
+#guestPage .text {
+  background-color: white;
+  color: black;
+  font-size: 5vw;
+  width: 35%;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  position: absolute;
+  top: 5%;
+  left: 50%;
+  transform: translate( -50%);
+  mix-blend-mode: screen;
+
+}
+
+#searchForm {
+  display: block;
+  position: absolute;
+  width: 30%;
+  border-radius: 10px;
+  top: 37%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+
+
+#input-container {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  grid-gap: 3%;
+  align-items: center;
+}
+
+.form-floating {
+  grid-column: span 9;
+}
+
+.fa-magnifying-glass {
+  margin-left: 2%;
+  display: flex;
+  justify-content: center;
+  margin-top: -50%;
+}
+
+.dropdown {
+  margin-bottom: 4%;
+  width: 100%;
+}
+
+.dropdown-menu {
+  margin-bottom: 4%;
+  width: 100%;
+}
 

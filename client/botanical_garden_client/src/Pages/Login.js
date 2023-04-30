@@ -17,10 +17,8 @@ export default function Login(){
 
     return (
         <div id="loginPage">
-
-            <div id="container" onMouseEnter={handleMouseEnter}>
-
-                <div id="text">Grădina Botanică Alexandru Borza</div>
+            
+                <div className="text" onMouseEnter={handleMouseEnter}>Grădina Botanică Alexandru Borza</div>
 
                 <div id="loginForm" style={{ display: showLoginForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
                     <div id="credentials">
@@ -38,11 +36,9 @@ export default function Login(){
                     <div id="buttonsLogin">
                         <button type="button" className="btn btn-success">Autentificare</button>
                         <button type="button" className="btn btn-success">Vizualizare ca vizitator</button>
-
                     </div>
 
                 </div>
-            </div>
         </div>
     )
 }
