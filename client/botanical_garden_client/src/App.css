@@ -67,7 +67,6 @@
   left: 50%;
   transform: translate( -50%);
   mix-blend-mode: screen;
-
 }
 
 #guestPage {
@@ -144,7 +143,6 @@
   position: relative;
   left: 50%;
   transform: translateX(-50%);
-  margin-top: ${showSearchForm ? '200px' : '100px'};
 
 }
 
@@ -158,3 +156,48 @@ img {
   width: 200px;
   height: 150px;
 }
+
+#employeePage {
+  height: 100vh;
+  background-image: url("../public/images/AdobeStock_251352975_Preview.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow-y: scroll;
+}
+
+#employeePage .text {
+  background-color: white;
+  color: black;
+  font-size: 5vw;
+  width: 35%;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 5%;
+  mix-blend-mode: screen;
+}
+
+#tableEmployee {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 5%;
+  width: 80%;
+  max-width: 100%;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.table thead th,
+.table tbody td,
+.table th[scope="row"],
+.table tbody tr:hover th[scope="row"],
+.table tbody tr:hover td {
+  color: white;
+}
+
+
+
+
