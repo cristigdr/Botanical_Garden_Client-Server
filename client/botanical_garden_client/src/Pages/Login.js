@@ -2,6 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 
 
 import { useState } from 'react';
+import {Link} from "react-router-dom";
 
 export default function Login(){
 
@@ -35,7 +36,9 @@ export default function Login(){
 
                     <div id="buttonsLogin">
                         <button type="button" className="btn btn-success">Autentificare</button>
-                        <button type="button" className="btn btn-success">Vizualizare ca vizitator</button>
+                        <Link to='/guest' style={{width: "100%"}}>
+                            <button type="button" className="btn btn-success">Vizualizare ca vizitator</button>
+                        </Link>
                     </div>
 
                 </div>

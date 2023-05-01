@@ -7,6 +7,9 @@ import Employee from "./Pages/Employee";
 import Admin from "./Pages/Admin";
 import AddPlant from "./Pages/AddPlant";
 import UpdatePlant from "./Pages/UpdatePlant";
+import AddUser from "./Pages/AddUser";
+import UpdateUser from "./Pages/UpdateUser";
+
 
 
 function App() {
@@ -19,6 +22,8 @@ function App() {
           <Route path="/admin" element={<Admin />} />
             <Route path="/addPlant" element={<AddPlant />} />
             <Route path="/updatePlant" element={<UpdatePlant />} />
+            <Route path="/addUser" element={<AddUser />} />
+            <Route path="/updateUser" element={<UpdateUser />} />
         </Routes>
       </Router>  );
 }

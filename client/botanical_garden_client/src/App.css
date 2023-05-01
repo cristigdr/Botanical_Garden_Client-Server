@@ -221,5 +221,32 @@ img {
   align-items: center;
 }
 
+#adminPage {
+  height: 100vh;
+  background-image: url("../public/images/AdobeStock_588809381_Preview.jpg");
+  background-size: cover;
+  background-position: center;
+  overflow-y: scroll;
+}
 
+#adminPage .text {
+  background-color: white;
+  color: black;
+  font-size: 5vw;
+  width: 35%;
+  font-weight: bold;
+  margin: 0 auto;
+  text-align: center;
+  position: relative;
+  top: 5%;
+  mix-blend-mode: screen;
+}
 
+#addUserCard {
+  top: 20%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  margin-top: 7%;
+  margin-bottom: 5%;
+
+}
