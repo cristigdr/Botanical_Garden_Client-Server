@@ -24,9 +24,12 @@ export default function Admin(){
 
             <div className="text" onMouseEnter={handleMouseEnter}>Bun venit!</div>
 
-            <div id="searchForm" style={{ display: showSearchForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
+            <div id="searchForm" style={{ display: showSearchForm ? 'block' : 'none' , top: '20%'}} onMouseLeave={handleMouseLeave}>
+
+                <label style={{color: 'white', marginBottom: '2%'}}><strong> Filtrare utilizatori:</strong></label>
 
                 <div className="btn-group dropdown">
+
                     <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" data-bs-trigger="hover" aria-expanded="false">
                         {buttonText}
                     </button>
@@ -36,14 +39,10 @@ export default function Admin(){
                     </ul>
                 </div>
 
-                <div id="input-container">
-
-                    <FontAwesomeIcon icon={faMagnifyingGlass} beat size="2xl" style={{color: "#307853",}} />
-                </div>
 
             </div>
 
-            <div id="tableEmployee" style={{top: showSearchForm ? '30%' : '20%'}}>
+            <div id="tableEmployee" style={{top: showSearchForm ? '20%' : '20%'}}>
                 <table className="table table-hover">
 
                     <thead>
