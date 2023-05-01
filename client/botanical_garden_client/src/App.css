@@ -157,6 +157,11 @@ img {
   height: 150px;
 }
 
+#tabImg {
+  width: 25px;
+  height: 25px;
+}
+
 #employeePage {
   height: 100vh;
   background-image: url("../public/images/AdobeStock_251352975_Preview.jpg");
@@ -192,12 +197,14 @@ img {
 
 .table thead th,
 .table tbody td,
-.table th[scope="row"],
-.table tbody tr:hover th[scope="row"],
-.table tbody tr:hover td {
+.table th[scope="row"] {
   color: white;
 }
 
+.table tbody tr:hover td,
+.table tbody tr:hover th[scope="row"] {
+  color: #307853;
+}
 
 
 

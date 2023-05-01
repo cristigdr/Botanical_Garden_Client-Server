@@ -1,5 +1,5 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMagnifyingGlass} from "@fortawesome/free-solid-svg-icons";
+import {faMagnifyingGlass, faPen, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 
 export default function Employee(){
@@ -47,7 +47,7 @@ export default function Employee(){
 
             </div>
 
-            <div id="tableEmployee" style={{top: showSearchForm ? '20%' : '20%'}}>
+            <div id="tableEmployee" style={{top: showSearchForm ? '30%' : '20%'}}>
                 <table className="table table-hover">
                     <thead>
                     <tr>
@@ -57,6 +57,8 @@ export default function Employee(){
                         <th scope="col">Specie</th>
                         <th scope="col">Planta Carnivora</th>
                         <th scope="col">Zona Gradina</th>
+                        <th scope="col">Imagine</th>
+                        <th scope="col">Operatii</th>
 
                     </tr>
                     </thead>
@@ -68,16 +70,10 @@ export default function Employee(){
                         <td>Papadie galbena</td>
                         <td>Nu</td>
                         <td>A</td>
+                        <td><img src="images/default.jpeg" alt="Default Image" id="tabImg"/></td>
+                        <td><FontAwesomeIcon icon={faPen} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <FontAwesomeIcon icon={faTrash} /></td>
                     </tr>
-                    <tr>
-                        <th scope="row">2</th>
-                        <td>Papadie</td>
-                        <td>Floare</td>
-                        <td>Papadie galbena</td>
-                        <td>Nu</td>
-                        <td>A</td>
-                    </tr>
-
                     </tbody>
                 </table>
             </div>

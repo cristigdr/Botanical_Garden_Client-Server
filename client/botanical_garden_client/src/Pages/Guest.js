@@ -53,7 +53,7 @@ export default function Guest(){
 
             </div>
 
-            <div id="cardGroup" style={{top: showSearchForm ? '20%' : '20%'}}>
+            <div id="cardGroup" style={{top: showSearchForm ? '30%' : '20%'}}>
                 <div className="card" style={{width: "18rem",}}>
 
                     <div className="card-body">
