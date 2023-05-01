@@ -1,6 +1,7 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMagnifyingGlass, faPen, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faMagnifyingGlass, faPen, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
+import {Link} from "react-router-dom";
 
 export default function Employee(){
     const [buttonText, setButtonText] = useState('Criteriu');
@@ -20,6 +21,7 @@ export default function Employee(){
     }
     return(
         <div id ="employeePage">
+
             <div className="text" onMouseEnter={handleMouseEnter}>Bun venit!</div>
 
             <div id="searchForm" style={{ display: showSearchForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
@@ -49,19 +51,28 @@ export default function Employee(){
 
             <div id="tableEmployee" style={{top: showSearchForm ? '30%' : '20%'}}>
                 <table className="table table-hover">
-                    <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Denumire</th>
-                        <th scope="col">Tip</th>
-                        <th scope="col">Specie</th>
-                        <th scope="col">Planta Carnivora</th>
-                        <th scope="col">Zona Gradina</th>
-                        <th scope="col">Imagine</th>
-                        <th scope="col">Operatii</th>
 
-                    </tr>
+                    <thead>
+
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <Link to='/addPlant' >
+                                <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white" }} />
+                            </Link>
+                            <span style={{ marginLeft: "10px", color: "white" }}>Adaugare Planta</span>
+                        </div>
+
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">Denumire</th>
+                            <th scope="col">Tip</th>
+                            <th scope="col">Specie</th>
+                            <th scope="col">Planta Carnivora</th>
+                            <th scope="col">Zona Gradina</th>
+                            <th scope="col">Imagine</th>
+                            <th scope="col">Operatii</th>
+                        </tr>
                     </thead>
+
                     <tbody>
                     <tr>
                         <th scope="row">1</th>
@@ -71,8 +82,13 @@ export default function Employee(){
                         <td>Nu</td>
                         <td>A</td>
                         <td><img src="images/default.jpeg" alt="Default Image" id="tabImg"/></td>
-                        <td><FontAwesomeIcon icon={faPen} />&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <FontAwesomeIcon icon={faTrash} /></td>
+                        <td>
+                            <Link to='/updatePlant' >
+                                <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
+                            </Link>
+                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                            <FontAwesomeIcon icon={faTrash} />
+                        </td>
                     </tr>
                     </tbody>
                 </table>

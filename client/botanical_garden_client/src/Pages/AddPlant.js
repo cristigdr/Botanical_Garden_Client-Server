@@ -9,12 +9,17 @@ export default function AddPlant(){
 
             <div className="card" id="addPlantCard" style={{ width: "18rem" }}>
                 <div className="card-body" >
+
                     <label htmlFor="image-upload" className="custom-file-upload">
-                        <FontAwesomeIcon icon={faPlus} size="2xl" /> <br/>
+                        <FontAwesomeIcon icon={faPlus} size="2xl" />
                     </label>
+
                     <p> Incarca o imagine </p>
+
                     <input id="image-upload" type="file" style={{ display: "none" }}/>
+
                 </div>
+
                 <ul className="list-group list-group-flush">
 
                     <div className="form-floating mb-3">
@@ -45,12 +50,10 @@ export default function AddPlant(){
                         <label><input type="radio" name="zone" value="D" /> D</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </li>
 
-                    <button type="button" className="btn btn-success" style={{width: '35%', margin: "5% auto"}}>Adaugare</button>
+                    <button type="button" className="btn btn-success" style={{width: 'fit-content', margin: "5% auto"}}>Adaugare</button>
 
                 </ul>
             </div>
-
-
 
         </div>
     )
