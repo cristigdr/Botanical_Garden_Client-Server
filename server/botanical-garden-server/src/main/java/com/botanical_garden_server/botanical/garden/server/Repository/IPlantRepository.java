@@ -13,5 +13,8 @@ public interface IPlantRepository extends CrudRepository<Plant, Long> {
 
     @Query("SELECT p FROM Plant p WHERE p.{criteria} = :filter")
     List<Plant> filterPlants(@Param("criteria") String criteria, @Param("filter") String filter);
+
+    boolean existsByIdAndNameAndTypeAndSpeciesAndZone(Plant plant);
+
 }
 

@@ -29,7 +29,7 @@ public class UserService {
         }
     }
 
-    public User getuserCredentials(String name, String password){
+    public User getUserCredentials(String name, String password){
         return this.userRepo.findByUserAndPassword(name, password);
     }
 
