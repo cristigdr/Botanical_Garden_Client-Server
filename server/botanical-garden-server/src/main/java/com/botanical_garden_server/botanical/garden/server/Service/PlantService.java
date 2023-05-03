@@ -30,8 +30,8 @@ public class PlantService {
         }
     }
 
-    public boolean existsByIdAndNameAndTypeAndSpeciesAndZone(Plant plant){
-        return this.plantRepo.existsByIdAndNameAndTypeAndSpeciesAndZone(plant);
+    public boolean existsByIdAndNameAndTypeAndSpeciesAndZone(Long id, String name, String type, String species, String carnivorous, String zone){
+        return this.plantRepo.existsByIdAndNameAndTypeAndSpeciesAndCarnivorousAndZone(id, name, type, species, carnivorous, zone);
     }
 
     public List<Plant> filterPlants(String criteria, String filter){

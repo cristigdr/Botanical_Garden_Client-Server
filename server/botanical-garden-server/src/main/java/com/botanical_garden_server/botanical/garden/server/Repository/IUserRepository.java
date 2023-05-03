@@ -10,6 +10,6 @@ import java.util.List;
 public interface IUserRepository extends CrudRepository<User, Long> {
     User findByUserAndPassword(String name, String password);
     List <User> findByRole(String role);
-    boolean existsByIdAndUserAndPasswordAndRole(User user);
+    boolean existsByIdAndUserAndPasswordAndRole(Long id, String name, String password, String role);
 
 }
