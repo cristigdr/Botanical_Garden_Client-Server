@@ -72,7 +72,7 @@ export default function Employee(){
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <Link to='/addPlant' >
+                        <Link to='/statsPlants' >
                             <FontAwesomeIcon icon={faChartSimple} size="xl" style={{color: "white",}} />
                         </Link>
                         <span style={{ marginLeft: "10px", color: "white" }}>Statistici</span>

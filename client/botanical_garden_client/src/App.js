@@ -9,6 +9,7 @@ import AddPlant from "./Pages/AddPlant";
 import UpdatePlant from "./Pages/UpdatePlant";
 import AddUser from "./Pages/AddUser";
 import UpdateUser from "./Pages/UpdateUser";
+import StatisticsPlants from "./Pages/StatisticsPlants";
 
 
 
@@ -24,6 +25,7 @@ function App() {
             <Route path="/updatePlant" element={<UpdatePlant />} />
             <Route path="/addUser" element={<AddUser />} />
             <Route path="/updateUser" element={<UpdateUser />} />
+            <Route path="/statsPlants" element={<StatisticsPlants />} />
         </Routes>
       </Router>  );
 }

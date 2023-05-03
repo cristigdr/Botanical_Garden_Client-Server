@@ -42,8 +42,6 @@
   display: flex;
   flex-direction: column;
   justify-content: center;
-  align-items: center;
-
 }
 
 
@@ -248,5 +246,19 @@ img {
   transform: translate(-50%, -50%);
   margin-top: 7%;
   margin-bottom: 5%;
+
+}
+
+#statsPlantsPage {
+  height: 100vh;
+  width: 100vw;
+  background-image: url("../public/images/AdobeStock_244200854_Preview.jpeg");
+  background-size: cover;
+  background-position: center;
+  overflow-y: scroll;
+}
+
+#statsPlantsPage {
+  
 
 }

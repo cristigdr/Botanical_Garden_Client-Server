@@ -34,7 +34,7 @@ export default function Login(){
                         </div>
                     </div>
 
-                    <div id="buttonsLogin">
+                    <div id="buttonsLogin" >
                         <button type="button" className="btn btn-success">Autentificare</button>
                         <Link to='/guest' style={{width: "100%"}}>
                             <button type="button" className="btn btn-success">Vizualizare ca vizitator</button>
