@@ -20,6 +20,18 @@ public class UserService {
         return this.userRepo.save(user);
     }
 
+    public User updateUser(User updatedUser) {
+        User existingUser = userRepo.findById(updatedUser.getId()).orElse(null);
+
+        if (existingUser != null) {
+            existingUser.setUser(updatedUser.getUser());
+            existingUser.setPassword(updatedUser.getPassword());
+            existingUser.setRole(updatedUser.getRole());
+            return userRepo.save(existingUser);
+        }
+        return null;
+    }
+
     public String deleteUser(Long id){
         try{
             this.userRepo.deleteById(id);
