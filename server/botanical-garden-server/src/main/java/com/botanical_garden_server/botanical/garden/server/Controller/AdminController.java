@@ -25,5 +25,15 @@ public class AdminController {
         return this.userService.insertUser(user);
     }
 
-    
+    @PutMapping("/updateUser")
+    @ResponseBody
+    public User updateUser(@RequestBody User user){
+        return this.userService.updateUser(user);
+    }
+
+    @DeleteMapping("/deleteUser")
+    @ResponseBody
+    public String deleteUser(@RequestParam Long id){
+        return this.userService.deleteUser(id);
+    }
 }
