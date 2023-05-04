@@ -36,4 +36,10 @@ public class PlantController {
     public String deletePlant(@RequestParam Long id){
         return this.plantService.deletePlant(id);
     }
+
+    @GetMapping("/filterPlants")
+    @ResponseBody
+    public List<Plant> filterPlants(@RequestParam String criteria, @RequestParam String filter){
+        return this.plantService.filterPlants(criteria, filter);
+    }
 }
