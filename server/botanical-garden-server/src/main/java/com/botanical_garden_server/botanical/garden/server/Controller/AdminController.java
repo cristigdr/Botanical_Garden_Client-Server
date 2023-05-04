@@ -36,4 +36,16 @@ public class AdminController {
     public String deleteUser(@RequestParam Long id){
         return this.userService.deleteUser(id);
     }
+
+    @PostMapping("/getCredentials")
+    @ResponseBody
+    public User getUserCredentials(@RequestParam String name, @RequestParam String password){
+        return this.userService.getUserCredentials(name, password);
+    }
+
+    @GetMapping("/findRoles")
+    @ResponseBody
+    public List<User> findByRole(@RequestParam String role){
+        return this.userService.findUsersByRole(role);
+    }
 }

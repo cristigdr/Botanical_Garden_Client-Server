@@ -45,7 +45,7 @@ public class UserService {
         return this.userRepo.findByUserAndPassword(name, password);
     }
 
-    public List<User> findusersByRole(String role){
+    public List<User> findUsersByRole(String role){
         return this.userRepo.findByRole(role);
     }
 
