@@ -1,6 +1,7 @@
 package com.botanical_garden_server.botanical.garden.server.Service;
 
 import com.botanical_garden_server.botanical.garden.server.Model.Plant;
+import com.botanical_garden_server.botanical.garden.server.Model.User;
 import com.botanical_garden_server.botanical.garden.server.Repository.IPlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,6 +20,20 @@ public class PlantService {
 
     public Plant inserPlant(Plant plant){
         return this.plantRepo.save(plant);
+    }
+
+    public Plant updatePlant(Plant updatedPlant) {
+        Plant existingPlant = plantRepo.findById(updatedPlant.getId()).orElse(null);
+
+        if (existingPlant != null) {
+            existingPlant.setName(updatedPlant.getName());
+            existingPlant.setType(updatedPlant.getType());
+            existingPlant.setSpecies(updatedPlant.getSpecies());
+            existingPlant.setCarnivorous(updatedPlant.getCarnivorous());
+            existingPlant.setZone(updatedPlant.getZone());
+            return plantRepo.save(existingPlant);
+        }
+        return null;
     }
 
     public String deletePlant(Long id){
