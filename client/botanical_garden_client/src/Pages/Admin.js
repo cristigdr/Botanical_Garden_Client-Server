@@ -95,7 +95,7 @@ export default function Admin(){
                                     <td>{user.password}</td>
                                     <td>{user.role}</td>
                                     <td>
-                                        <Link to='/updateUser' >
+                                        <Link to={`/updateUser/${user.id}`}>
                                             <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
                                         </Link>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

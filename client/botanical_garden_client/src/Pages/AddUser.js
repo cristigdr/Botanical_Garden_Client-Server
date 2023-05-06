@@ -36,7 +36,8 @@ export default function AddUser(){
                                id="user"
                                placeholder="name@example.com"
                                value={addUserData.user}
-                               onChange={(e) => setAddUserData({ ...addUserData, user: e.target.value })}                        ></input>
+                               onChange={(e) => setAddUserData({ ...addUserData, user: e.target.value })}
+                        ></input>
                         <label htmlFor="floatingInput"><strong>Utilizator</strong></label>
                     </div>
 
@@ -46,7 +47,8 @@ export default function AddUser(){
                                id="password"
                                placeholder="name@example.com"
                                value={addUserData.password}
-                               onChange={(e) => setAddUserData({ ...addUserData, password: e.target.value })}                        ></input>
+                               onChange={(e) => setAddUserData({ ...addUserData, password: e.target.value })}
+                        ></input>
                         <label htmlFor="floatingInput"><strong>Parola</strong></label>
                     </div>
 
@@ -58,7 +60,8 @@ export default function AddUser(){
                                       name="zone"
                                       value="administrator"
                                       checked={addUserData.role === "administrator"}
-                                      onChange={(e) => setAddUserData({ ...addUserData, role: e.target.value })}                        /> Administrator</label>
+                                      onChange={(e) => setAddUserData({ ...addUserData, role: e.target.value })}
+                        /> Administrator</label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -66,7 +69,8 @@ export default function AddUser(){
                                 name="zone"
                                 value="angajat"
                                 checked={addUserData.role === "angajat"}
-                                      onChange={(e) => setAddUserData({ ...addUserData, user: e.target.value })}                        /> Angajat</label>
+                                      onChange={(e) => setAddUserData({ ...addUserData, user: e.target.value })}
+                        /> Angajat</label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 

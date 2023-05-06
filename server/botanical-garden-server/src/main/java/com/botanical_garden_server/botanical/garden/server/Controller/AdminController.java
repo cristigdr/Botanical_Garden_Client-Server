@@ -21,12 +21,13 @@ public class AdminController {
         return this.userService.getUsers();
     }
 
-    @GetMapping("/getUser")
+    @GetMapping("/getUser/{id}")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
-    public Optional<User> getUser(@RequestParam Long id){
-        return this.userService.getUserById(id);
+    public Optional<User> getUser(@PathVariable("id") Long userId){
+        return this.userService.getUserById(userId);
     }
+
 
     @PostMapping("/insertUser")
     @ResponseBody

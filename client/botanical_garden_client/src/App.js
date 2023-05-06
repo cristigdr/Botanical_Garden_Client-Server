@@ -14,6 +14,9 @@ import StatisticsPlants from "./Pages/StatisticsPlants";
 
 
 function App() {
+
+
+
   return (
       <Router>
         <Routes>
@@ -24,7 +27,7 @@ function App() {
             <Route path="/addPlant" element={<AddPlant />} />
             <Route path="/updatePlant" element={<UpdatePlant />} />
             <Route path="/addUser" element={<AddUser />} />
-            <Route path="/updateUser" element={<UpdateUser />} />
+            <Route path="/updateUser/:id" element={<UpdateUser />}/>
             <Route path="/statsPlants" element={<StatisticsPlants />} />
         </Routes>
       </Router>  );
