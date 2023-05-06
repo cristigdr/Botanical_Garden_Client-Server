@@ -8,7 +8,7 @@ export default function AddUser(){
         password: "",
         role: "",
     });
-    
+
 
     const handleSubmit = async () => {
         try {
