@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class AdminController {
@@ -18,6 +19,13 @@ public class AdminController {
     @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public List<User> getAllUsers(){
         return this.userService.getUsers();
+    }
+
+    @GetMapping("/getUser")
+    @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+    public Optional<User> getUser(@RequestParam Long id){
+        return this.userService.getUserById(id);
     }
 
     @PostMapping("/insertUser")
