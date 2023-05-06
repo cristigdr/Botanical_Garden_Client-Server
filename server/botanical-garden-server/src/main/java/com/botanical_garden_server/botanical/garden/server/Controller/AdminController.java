@@ -51,9 +51,10 @@ public class AdminController {
     }
 
 
-    @GetMapping("/findRoles")
+    @GetMapping("/findRoles/{role}")
     @ResponseBody
-    public List<User> findByRole(@RequestParam String role){
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+    public List<User> findByRole(@PathVariable("role") String role){
         return this.userService.findUsersByRole(role);
     }
 }

@@ -5,14 +5,17 @@ import {Link} from "react-router-dom";
 import httpClient from "./httpClient";
 
 export default function Admin(){
+
     const [buttonText, setButtonText] = useState('Tip Utilizator');
     const[users, setUsers] = useState([]);
     const [showSearchForm, setshowSearchForm] = useState(false);
+    const [selectedRole, setSelectedRole] = useState("");
 
 
 
     function handleItemClick(event) {
         setButtonText(event.target.innerText);
+        setSelectedRole(event.target.innerText);
     }
 
 
@@ -39,6 +42,7 @@ export default function Admin(){
         fetchAllUsers();
     }, []);
 
+
     const handleDeleteUser = async (id) => {
         try {
             await httpClient.delete(`http://localhost:8080/deleteUser/${id}`);
@@ -47,6 +51,22 @@ export default function Admin(){
             console.error(error);
         }
     };
+
+    async function handleFilterUsers(role) {
+        try {
+            const response = await httpClient.get(`http://localhost:8080/findRoles/${role}`);
+            setUsers(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    useEffect(() => {
+        if (selectedRole) {
+            handleFilterUsers(selectedRole);
+        }
+    }, [selectedRole]);
+
 
 
     return(
