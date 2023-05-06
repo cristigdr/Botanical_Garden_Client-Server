@@ -22,6 +22,7 @@ public class AdminController {
 
     @PostMapping("/insertUser")
     @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public User insertUser(@RequestBody User user){
         return this.userService.insertUser(user);
     }
