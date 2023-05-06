@@ -16,7 +16,7 @@ export default function AddUser(){
                 "http://localhost:8080/insertUser",
                 addUserData
             );
-            console.log(response.data); // log the response from the server
+            console.log(response.data);
         } catch (error) {
             console.error(error);
         }

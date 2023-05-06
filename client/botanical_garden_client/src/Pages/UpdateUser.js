@@ -13,6 +13,7 @@ export default function UpdateUser(){
     });
 
 
+
         useEffect(() => {
             async function fetchUser(){
                 try {
@@ -24,6 +25,18 @@ export default function UpdateUser(){
                 }
             }fetchUser();
         }, [id]);
+
+    const handleSubmit = async () => {
+        try {
+            const response = await httpClient.put(
+                "http://localhost:8080/updateUser",
+                userData
+            );
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return(
         <div id ="adminPage">
@@ -42,7 +55,7 @@ export default function UpdateUser(){
                                onChange={(e) => setUserData({ ...userData, id: e.target.value })}
                                disabled
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Utilizator</strong></label>
+                        <label htmlFor="floatingInput"><strong>Id:</strong></label>
                     </div>
 
                     <div className="form-floating mb-3">
@@ -53,10 +66,11 @@ export default function UpdateUser(){
                                value={userData.user}
                                onChange={(e) => setUserData({ ...userData, user: e.target.value })}
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Utilizator</strong></label>
+                        <label htmlFor="floatingInput"><strong>Utilizator:</strong></label>
                     </div>
 
                     <div className="form-floating mb-3">
+
                         <input type="text"
                                className="form-control"
                                id="floatingInput"
@@ -64,10 +78,13 @@ export default function UpdateUser(){
                                value={userData.password}
                                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Parola</strong></label>
+                        <label htmlFor="floatingInput"><strong>Parola:</strong></label>
                     </div>
 
                     <li className="list-group-item">
+
+                        <strong>Rol:</strong> <br/>
+
                         <label>
                             <input
                                 type="radio"
@@ -95,7 +112,11 @@ export default function UpdateUser(){
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </li>
 
-                    <button type="button" className="btn btn-success" style={{width: 'fit-content', margin: "5% auto"}}>Actualizare</button>
+                    <button type="button"
+                            className="btn btn-success"
+                            style={{width: 'fit-content', margin: "5% auto"}}
+                            onClick={handleSubmit}
+                    >Actualizare</button>
 
                 </ul>
             </div>

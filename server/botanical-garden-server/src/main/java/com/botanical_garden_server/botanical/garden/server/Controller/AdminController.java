@@ -38,6 +38,7 @@ public class AdminController {
 
     @PutMapping("/updateUser")
     @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public User updateUser(@RequestBody User user){
         return this.userService.updateUser(user);
     }
