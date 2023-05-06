@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faMagnifyingGlass, faPen, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faPen, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
 import httpClient from "./httpClient";
 
@@ -38,6 +38,15 @@ export default function Admin(){
         }
         fetchAllUsers();
     }, []);
+
+    const handleDeleteUser = async (id) => {
+        try {
+            await httpClient.delete(`http://localhost:8080/deleteUser/${id}`);
+            setUsers(users.filter((user) => user.id !== id));
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
 
     return(
@@ -98,8 +107,12 @@ export default function Admin(){
                                         <Link to={`/updateUser/${user.id}`}>
                                             <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
                                         </Link>
+
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                        <FontAwesomeIcon icon={faTrash} />
+
+                                        <FontAwesomeIcon icon={faTrash}
+                                                         onClick={() => handleDeleteUser(user.id)}
+                                        />
                                     </td>
                                 </tr>
                             ))}

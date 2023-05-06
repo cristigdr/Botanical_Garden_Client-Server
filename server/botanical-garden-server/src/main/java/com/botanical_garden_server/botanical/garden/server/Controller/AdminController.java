@@ -43,9 +43,10 @@ public class AdminController {
         return this.userService.updateUser(user);
     }
 
-    @DeleteMapping("/deleteUser")
+    @DeleteMapping("/deleteUser/{id}")
     @ResponseBody
-    public String deleteUser(@RequestParam Long id){
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+    public String deleteUser(@PathVariable("id") Long id){
         return this.userService.deleteUser(id);
     }
 
