@@ -1,24 +1,45 @@
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faMagnifyingGlass, faPen, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
 import {Link} from "react-router-dom";
+import httpClient from "./httpClient";
 
 export default function Admin(){
     const [buttonText, setButtonText] = useState('Tip Utilizator');
+    const[users, setUsers] = useState([]);
+    const [showSearchForm, setshowSearchForm] = useState(false);
+
+
 
     function handleItemClick(event) {
         setButtonText(event.target.innerText);
     }
 
-    const [showSearchForm, setshowSearchForm] = useState(false);
+
 
     const handleMouseEnter = () => {
         setshowSearchForm(true);
     }
 
+
     const handleMouseLeave = () => {
         setshowSearchForm(false);
     }
+
+
+    useEffect( () =>{
+        async function fetchAllUsers(){
+            try{
+                const response = await httpClient.get('http://localhost:8080/getUsers');
+                setUsers(response.data);
+            }catch (error){
+                console.error(error);
+            }
+        }
+        fetchAllUsers();
+    }, []);
+
+
     return(
         <div id ="adminPage">
 
@@ -43,42 +64,49 @@ export default function Admin(){
             </div>
 
             <div id="tableEmployee" style={{top: showSearchForm ? '20%' : '20%'}}>
-                <table className="table table-hover">
 
-                    <thead>
 
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <Link to='/addUser' >
-                            <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white" }} />
-                        </Link>
-                        <span style={{ marginLeft: "10px", color: "white" }}>Adaugare Utilizator</span>
-                    </div>
+                    <table className="table table-hover">
+                        <thead>
 
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Utilizator</th>
-                        <th scope="col">Parola</th>
-                        <th scope="col">Rol</th>
-                        <th scope="col">Operatii</th>
-                    </tr>
-                    </thead>
+                            <div style={{ display: "flex", alignItems: "center" }}>
+                                <Link to='/addUser' >
+                                    <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white" }} />
+                                </Link>
+                                <span style={{ marginLeft: "10px", color: "white" }}>Adaugare Utilizator</span>
+                            </div>
 
-                    <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>cristi</td>
-                        <td>12345</td>
-                        <td>administrator</td>
-                        <td>
-                            <Link to='/updateUser' >
-                                <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <FontAwesomeIcon icon={faTrash} />
-                        </td>
-                    </tr>
-                    </tbody>
-                </table>
+
+                            <tr>
+                                <th scope="col">Id</th>
+                                <th scope="col">Utilizator</th>
+                                <th scope="col">Parola</th>
+                                <th scope="col">Rol</th>
+                                <th scope="col">Operatii</th>
+                            </tr>
+
+                        </thead>
+
+                        <tbody>
+                            {users.map(user => (
+                                <tr key={user.id}>
+                                    <th scope="row">{user.id}</th>
+                                    <td>{user.user}</td>
+                                    <td>{user.password}</td>
+                                    <td>{user.role}</td>
+                                    <td>
+                                        <Link to='/updateUser' >
+                                            <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
+                                        </Link>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <FontAwesomeIcon icon={faTrash} />
+                                    </td>
+                                </tr>
+                            ))}
+
+                        </tbody>
+
+                    </table>
             </div>
 
         </div>

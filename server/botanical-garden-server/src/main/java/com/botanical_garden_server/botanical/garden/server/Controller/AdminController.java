@@ -15,6 +15,7 @@ public class AdminController {
 
     @GetMapping("/getUsers")
     @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
     public List<User> getAllUsers(){
         return this.userService.getUsers();
     }
@@ -37,11 +38,6 @@ public class AdminController {
         return this.userService.deleteUser(id);
     }
 
-    @PostMapping("/getCredentials")
-    @ResponseBody
-    public User getUserCredentials(@RequestParam String name, @RequestParam String password){
-        return this.userService.getUserCredentials(name, password);
-    }
 
     @GetMapping("/findRoles")
     @ResponseBody
