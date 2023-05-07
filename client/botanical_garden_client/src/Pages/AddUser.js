@@ -71,7 +71,7 @@ export default function AddUser(){
                                 name="zone"
                                 value="angajat"
                                 checked={addUserData.role === "angajat"}
-                                      onChange={(e) => setAddUserData({ ...addUserData, user: e.target.value })}
+                                      onChange={(e) => setAddUserData({ ...addUserData, role: e.target.value })}
                         /> Angajat</label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

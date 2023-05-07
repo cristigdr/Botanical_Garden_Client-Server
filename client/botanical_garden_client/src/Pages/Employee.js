@@ -9,11 +9,14 @@ import {
     faTrash,
 
 } from "@fortawesome/free-solid-svg-icons";
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
+import httpClient from "./httpClient";
 
 export default function Employee(){
     const [buttonText, setButtonText] = useState('Criteriu');
+    const[plants, setPlants] = useState([]);
+
 
     function handleItemClick(event) {
         setButtonText(event.target.innerText);
@@ -28,6 +31,19 @@ export default function Employee(){
     const handleMouseLeave = () => {
         setshowSearchForm(false);
     }
+
+    useEffect( () =>{
+        async function fetchAllPlants(){
+            try{
+                const response = await httpClient.get('http://localhost:8080/getPlants');
+                setPlants(response.data);
+            }catch (error){
+                console.error(error);
+            }
+        }
+        fetchAllPlants();
+    }, []);
+
     return(
         <div id ="employeePage">
 
@@ -126,22 +142,24 @@ export default function Employee(){
                     </thead>
 
                     <tbody>
-                    <tr>
-                        <th scope="row">1</th>
-                        <td>Papadie</td>
-                        <td>Floare</td>
-                        <td>Papadie galbena</td>
-                        <td>Nu</td>
-                        <td>A</td>
-                        <td><img src="images/default.jpeg" alt="Default Image" id="tabImg"/></td>
-                        <td>
-                            <Link to='/updatePlant' >
-                                <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
-                            </Link>
-                            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                            <FontAwesomeIcon icon={faTrash} />
-                        </td>
-                    </tr>
+                        {plants.map(plant => (
+                            <tr key={plant.id}>
+                                <th scope="row">{plant.id}</th>
+                                <td>{plant.name}</td>
+                                <td>{plant.type}</td>
+                                <td>{plant.species}</td>
+                                <td>{plant.carnivorous}</td>
+                                <td>{plant.zone}</td>
+                                <td><img src="images/default.jpeg" alt="Default Image" id="tabImg"/></td>
+                                <td>
+                                    <Link to='/updatePlant' >
+                                        <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
+                                    </Link>
+                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <FontAwesomeIcon icon={faTrash} />
+                                </td>
+                            </tr>
+                        ))}
                     </tbody>
                 </table>
             </div>
