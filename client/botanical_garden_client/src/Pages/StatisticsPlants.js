@@ -8,6 +8,7 @@ export default function StatisticsPlants() {
     const chartContainerZone = useRef(null);
     const chartInstanceZone = useRef(null);
     const [carnCount, setCarnCount] = useState([]);
+    const [zoneCount, setZoneCount] = useState([]);
 
     useEffect(() => {
         async function fetchCarnCount() {
@@ -23,6 +24,22 @@ export default function StatisticsPlants() {
         }
 
         fetchCarnCount();
+    }, []);
+
+    useEffect(() => {
+        async function fetchZoneCount() {
+            try {
+                const response = await httpClient.get(
+                    "http://localhost:8080/getZoneCount"
+                );
+                setZoneCount(response.data);
+                localStorage.setItem("zoneCount", JSON.stringify(response.data)); // Store data in localStorage
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchZoneCount();
     }, []);
 
     useEffect(() => {
@@ -51,7 +68,7 @@ export default function StatisticsPlants() {
                 }
             );
         }
-        
+
     }, [carnCount]);
 
     useEffect(() => {
@@ -62,10 +79,10 @@ export default function StatisticsPlants() {
             }
 
             const chartData = {
-                labels: ["A", "B", "C", "D"],
+                labels: ["D", "C", "B", "A"],
                 datasets: [
                     {
-                        data: [30,50,20,10],
+                        data: zoneCount.map((item) => item[1]),
                         backgroundColor: ["#C70039","#FF5733","#FFC300","#DAF7A6"],
                         borderWidth: 1,
                     },
@@ -83,7 +100,7 @@ export default function StatisticsPlants() {
                 chartInstanceCarn.current.destroy();
             }
         };
-    }, []);
+    }, [zoneCount]);
 
 
     const chartStyles = {

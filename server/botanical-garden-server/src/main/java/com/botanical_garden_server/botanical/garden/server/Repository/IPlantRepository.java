@@ -16,6 +16,9 @@ public interface IPlantRepository extends JpaRepository<Plant, Long> {
     @Query("SELECT p.carnivorous, COUNT(p) FROM Plant p GROUP BY p.carnivorous")
     List<Object[]> countByCarnivorous();
 
+    @Query("SELECT p.zone, COUNT(p) FROM Plant p GROUP BY p.zone")
+    List<Object[]> countByZone();
+
     List<Plant> findByOrderByTypeAscSpeciesAsc();
 
     default List<Plant> filterPlants(String criteria, String value) {

@@ -31,6 +31,12 @@ public class PlantController {
         return this.plantService.getCarnivorousCount();
     }
 
+    @GetMapping("/getZoneCount")
+    @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+    public List<Object[]> getZoneCount(){
+        return this.plantService.getZoneCount();
+    }
 
     @GetMapping("/getPlant/{id}")
     @ResponseBody
