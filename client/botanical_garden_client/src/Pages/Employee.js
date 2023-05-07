@@ -16,9 +16,11 @@ import httpClient from "./httpClient";
 export default function Employee(){
     const [buttonText, setButtonText] = useState('Criteriu');
     const[plants, setPlants] = useState([]);
-
+    const [filterValue, setFilterValue] = useState('');
+    const [filterCriteria, setFilterCriteria] = useState('');
 
     function handleItemClick(event) {
+        setFilterCriteria(event.target.getAttribute('data-criteria'));
         setButtonText(event.target.innerText);
     }
 
@@ -47,6 +49,7 @@ export default function Employee(){
         fetchAllPlants();
     }, []);
 
+
     const handeDeletePlant = async (id) => {
         try {
             await httpClient.delete(`http://localhost:8080/deletePlant/${id}`);
@@ -55,6 +58,21 @@ export default function Employee(){
             console.error(error);
         }
     };
+
+
+    async function handleFilterPlants(criteria, filter) {
+        try {
+            const response = await httpClient.get(`http://localhost:8080/filterPlants/${criteria}/${filter}`);
+            setPlants(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+
+    function handleFilterClick() {
+        handleFilterPlants(filterCriteria, filterValue);
+    }
+
 
 
     return(
@@ -69,20 +87,27 @@ export default function Employee(){
                         {buttonText}
                     </button>
                     <ul className="dropdown-menu">
-                        <li><a className="dropdown-item" href="#" onClick={handleItemClick}>Denumire</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={handleItemClick}>Tip</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={handleItemClick}>Specie</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={handleItemClick}>Plantă carnivoră</a></li>
-                        <li><a className="dropdown-item" href="#" onClick={handleItemClick}>Zonă</a></li>
+                        <li><label className="dropdown-item" data-criteria="name" onClick={handleItemClick} >Denumire</label></li>
+                        <li><label className="dropdown-item"  data-criteria="type" onClick={handleItemClick} >Tip</label></li>
+                        <li><label className="dropdown-item"  data-criteria="species" onClick={handleItemClick} >Specie</label></li>
+                        <li><label className="dropdown-item"  data-criteria="carnivorous" onClick={handleItemClick} >Plantă carnivoră</label></li>
+                        <li><label className="dropdown-item" data-criteria="zone" onClick={handleItemClick} >Zonă</label></li>
                     </ul>
                 </div>
 
                 <div id="input-container">
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                        <input type="text"
+                               className="form-control"
+                               id="floatingInput"
+                               placeholder="name@example.com"
+                               value={filterValue}
+                               onChange={(event) => setFilterValue(event.target.value)}
+                        ></input>
                         <label htmlFor="floatingInput">Filtru</label>
                     </div>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} beat size="2xl" style={{color: "#307853",}} />
+                    <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" style={{color: "#307853",}} onClick={handleFilterClick}
+                    />
                 </div>
 
             </div>
