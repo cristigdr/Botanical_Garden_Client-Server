@@ -1,7 +1,30 @@
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
+import {useState} from "react";
+import httpClient from "./httpClient";
 
 export default function AddPlant(){
+
+    const[addPlantData, setAddPlantData] = useState({
+        name: "",
+        type: "",
+        species: "",
+        carnivorous: "Nu",
+        zone: "",
+    });
+
+
+    const handleSubmit = async () => {
+        try {
+            const response = await httpClient.post(
+                "http://localhost:8080/insertPlant",
+                addPlantData
+            );
+            console.log(response.data);
+        } catch (error) {
+            console.error(error);
+        }
+    };
 
     return(
         <div id ="employeePage">
@@ -23,34 +46,84 @@ export default function AddPlant(){
                 <ul className="list-group list-group-flush">
 
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                        <input type="text"
+                               className="form-control"
+                               id="floatingInput"
+                               placeholder="name@example.com"
+                               value={addPlantData.name}
+                               onChange={(e) => setAddPlantData({ ...addPlantData, name: e.target.value })}
+                               required={true}
+                        ></input>
                         <label htmlFor="floatingInput"><strong>Denumire</strong></label>
                     </div>
 
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                        <input type="text"
+                               className="form-control"
+                               id="floatingInput"
+                               placeholder="name@example.com"
+                               value={addPlantData.type}
+                               onChange={(e) => setAddPlantData({ ...addPlantData, type: e.target.value })}
+                               required={true}
+                        ></input>
                         <label htmlFor="floatingInput"><strong>Tip</strong></label>
                     </div>
 
                     <div className="form-floating mb-3">
-                        <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                        <input type="text"
+                               className="form-control"
+                               id="floatingInput"
+                               placeholder="name@example.com"
+                               value={addPlantData.species}
+                               onChange={(e) => setAddPlantData({ ...addPlantData, species: e.target.value })}
+                               required={true}
+                        ></input>
                         <label htmlFor="floatingInput"><strong>Specie</strong></label>
                     </div>
 
                     <li className="list-group-item">
                         <strong>Planta carnivora:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <input type="checkbox" />
+                        <input type="checkbox"
+                               onChange={(e) => setAddPlantData({ ...addPlantData, carnivorous: e.target.checked ? 'Da' : 'Nu' })}
+                        />
                     </li>
 
                     <li className="list-group-item">
                         <strong>Zona gradina botanica:</strong> <br/>
-                        <label><input type="radio" name="zone" value="A" /> A</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label><input type="radio" name="zone" value="B" /> B</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label><input type="radio" name="zone" value="C" /> C</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                        <label><input type="radio" name="zone" value="D" /> D</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <label><input type="radio"
+                                      name="zone"
+                                      value="A"
+                                      checked={addPlantData.zone === "A"}
+                                      onChange={(e) => setAddPlantData({ ...addPlantData, zone: e.target.value })}
+                        /> A</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="radio"
+                                      name="zone"
+                                      value="B"
+                                      checked={addPlantData.zone === "B"}
+                                      onChange={(e) => setAddPlantData({ ...addPlantData, zone: e.target.value })}
+                        /> B</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="radio"
+                                      name="zone"
+                                      value="C"
+                                      checked={addPlantData.zone === "C"}
+                                      onChange={(e) => setAddPlantData({ ...addPlantData, zone: e.target.value })}
+                        /> C</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <label><input type="radio"
+                                      name="zone"
+                                      value="D"
+                                      checked={addPlantData.zone === "D"}
+                                      onChange={(e) => setAddPlantData({ ...addPlantData, zone: e.target.value })}
+                        /> D</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                     </li>
 
-                    <button type="button" className="btn btn-success" style={{width: 'fit-content', margin: "5% auto"}}>Adaugare</button>
+                    <button type="button"
+                            className="btn btn-success"
+                            style={{width: 'fit-content', margin: "5% auto"}}
+                            onClick={handleSubmit}
+                    >Adaugare</button>
 
                 </ul>
             </div>
