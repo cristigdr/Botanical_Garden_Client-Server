@@ -2,6 +2,7 @@ import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {useState} from "react";
 import httpClient from "./httpClient";
+import FormData from "form-data";
 
 export default function AddPlant(){
 
@@ -13,17 +14,31 @@ export default function AddPlant(){
         zone: "",
     });
 
+    const [imageFile, setImageFile] = useState(null);
+
 
     const handleSubmit = async () => {
         try {
+            const formData = new FormData();
+            formData.append('imageFile', imageFile);
+            formData.append('name', addPlantData.name);
+            formData.append('type', addPlantData.type);
+            formData.append('species', addPlantData.species);
+            formData.append('carnivorous', addPlantData.carnivorous);
+            formData.append('zone', addPlantData.zone);
+
             const response = await httpClient.post(
-                "http://localhost:8080/insertPlant",
-                addPlantData
+                `http://localhost:8080/insertPlant`,
+                formData
             );
             console.log(response.data);
         } catch (error) {
             console.error(error);
         }
+    };
+
+    const handleFileInputChange = (event) => {
+        setImageFile(event.target.files[0]);
     };
 
     return(
@@ -39,7 +54,10 @@ export default function AddPlant(){
 
                     <p> Incarca o imagine </p>
 
-                    <input id="image-upload" type="file" style={{ display: "none" }}/>
+                    <input id="image-upload"
+                           type="file" style={{ display: "none" }}
+                           onChange={handleFileInputChange}
+                    />
 
                 </div>
 

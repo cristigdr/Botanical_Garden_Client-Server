@@ -4,8 +4,6 @@ import {useEffect, useState} from "react";
 import {useParams} from "react-router-dom";
 import httpClient from "./httpClient";
 
-
-
 export default function UpdatePlant(){
 
     const { id } = useParams();
@@ -17,8 +15,6 @@ export default function UpdatePlant(){
         carnivorous: "Nu",
         zone: "",
     });
-
-
 
     useEffect(() => {
         async function fetchPlant(){
@@ -50,17 +46,6 @@ export default function UpdatePlant(){
             <div className="text" style={{ width: '50%'}}>Actualizare planta:</div>
 
             <div className="card" id="updatePlantCard" style={{ width: "18rem" }}>
-                <div className="card-body" >
-
-                    <label htmlFor="image-upload" className="custom-file-upload">
-                        <FontAwesomeIcon icon={faPlus} size="2xl" />
-                    </label>
-
-                    <p> Incarca o imagine </p>
-
-                    <input id="image-upload" type="file" style={{ display: "none" }}/>
-
-                </div>
 
                 <ul className="list-group list-group-flush">
 
@@ -146,6 +131,7 @@ export default function UpdatePlant(){
                                       checked={plantData.zone === "D"}
                                       onChange={(e) => setPlantData({ ...plantData, zone: e.target.value })}
                         /> D</label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
                     </li>
 
                     <button type="button"
@@ -153,7 +139,6 @@ export default function UpdatePlant(){
                             style={{width: 'fit-content', margin: "5% auto"}}
                             onClick={handleSubmit}
                     >Actualizare</button>
-
                 </ul>
             </div>
 

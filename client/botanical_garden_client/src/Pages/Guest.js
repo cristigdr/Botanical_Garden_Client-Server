@@ -1,12 +1,15 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.js';
-import {useState} from "react";
+import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
+import httpClient from "./httpClient";
 
 export default function Guest(){
 
     const [buttonText, setButtonText] = useState('Criteriu');
+    const[plants, setPlants] = useState([]);
+
 
     function handleItemClick(event) {
         setButtonText(event.target.innerText);
@@ -22,6 +25,17 @@ export default function Guest(){
         setshowSearchForm(false);
     }
 
+    useEffect( () =>{
+        async function fetchAllPlants(){
+            try{
+                const response = await httpClient.get('http://localhost:8080/getPlants');
+                setPlants(response.data);
+            }catch (error){
+                console.error(error);
+            }
+        }
+        fetchAllPlants();
+    }, []);
 
 
     return(
@@ -54,24 +68,29 @@ export default function Guest(){
             </div>
 
             <div id="cardGroup" style={{top: showSearchForm ? '30%' : '20%'}}>
-                <div className="card" style={{width: "18rem",}}>
 
-                    <div className="card-body">
+                {plants.map(plant => (
 
-                        <img src="images/default.jpeg" className="card-img-top" alt="default"/>
+                    <div className="card" style={{width: "18rem",}}>
+                            <div className="card-body">
 
-                        <h5 className="card-title">Denumire</h5>
+                                {plant.image && (
+                                    <img
+                                        className="card-img-top"
+                                        src={`data:image/jpeg;base64, ${plant.image}`}
+                                    />
+                                )}
+                                <h5 className="card-title" style={{marginTop: "6%", textAlign: "center"}}><b>Denumire:</b>{plant.name}</h5>
 
+                            </div>
+                            <ul className="list-group list-group-flush">
+                                <li className="list-group-item"><b>Tip:</b> &nbsp; {plant.type}</li>
+                                <li className="list-group-item"><b>Specie:</b> &nbsp; {plant.species}</li>
+                                <li className="list-group-item"><b>Planta carnivora:</b> &nbsp; {plant.type}</li>
+                                <li className="list-group-item"><b>Zona gradina botanica:</b> &nbsp; {plant.zone}</li>
+                            </ul>
                     </div>
-                    <ul className="list-group list-group-flush">
-                        <li className="list-group-item">Tip</li>
-                        <li className="list-group-item">Specie</li>
-                        <li className="list-group-item">Planta carnivora</li>
-                        <li className="list-group-item">Zona gradina botanica</li>
-
-                    </ul>
-
-                </div>
+                ))}
             </div>
 
         </div>

@@ -24,6 +24,8 @@ public class Plant {
     @Check(constraints = "zona_gradina_botanica IN ('A', 'B', 'C', 'D')")
     private String zone;
 
+    @Column(name = "imagine", nullable = true, columnDefinition = "BLOB")
+    private byte[] image;
 
     public Plant() {}
 
@@ -33,6 +35,16 @@ public class Plant {
         this.species = species;
         this.carnivorous = carnivorous;
         this.zone = zone;
+    }
+
+    public Plant(Long id, String name, String type, String species, String carnivorous, String zone, byte[] image) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.species = species;
+        this.carnivorous = carnivorous;
+        this.zone = zone;
+        this.image = image;
     }
 
     public Long getId() {
@@ -83,6 +95,14 @@ public class Plant {
         this.zone = zone;
     }
 
+    public byte[] getImage() {
+        return image;
+    }
+
+    public void setImage(byte[] image) {
+        this.image = image;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -96,5 +116,6 @@ public class Plant {
         if (!carnivorous.equals(plant.carnivorous)) return false;
         return zone.equals(plant.zone);
     }
+
 
 }

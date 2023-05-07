@@ -4,7 +4,9 @@ import com.botanical_garden_server.botanical.garden.server.Model.Plant;
 import com.botanical_garden_server.botanical.garden.server.Repository.IPlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -23,9 +25,15 @@ public class PlantService {
     }
 
 
-    public Plant inserPlant(Plant plant){
+    public Plant insertPlant(Plant plant, MultipartFile imageFile) throws IOException {
+        byte[] imageBytes = null;
+        if (imageFile != null && !imageFile.isEmpty()) {
+            imageBytes = imageFile.getBytes();
+        }
+        plant.setImage(imageBytes);
         return this.plantRepo.save(plant);
     }
+
 
     public Plant updatePlant(Plant updatedPlant) {
         Plant existingPlant = plantRepo.findById(updatedPlant.getId()).orElse(null);

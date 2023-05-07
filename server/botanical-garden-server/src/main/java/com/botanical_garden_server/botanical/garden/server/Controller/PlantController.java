@@ -4,7 +4,9 @@ import com.botanical_garden_server.botanical.garden.server.Model.Plant;
 import com.botanical_garden_server.botanical.garden.server.Service.PlantService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -33,9 +35,10 @@ public class PlantController {
     @PostMapping("/insertPlant")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
-    public Plant insertPlant(@RequestBody Plant plant){
-        return this.plantService.inserPlant(plant);
+    public Plant insertPlant(@RequestParam("imageFile") MultipartFile imageFile, @ModelAttribute Plant plant) throws IOException {
+        return this.plantService.insertPlant(plant, imageFile);
     }
+
 
 
     @PutMapping("/updatePlant")

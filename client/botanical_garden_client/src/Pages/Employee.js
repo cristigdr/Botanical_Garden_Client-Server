@@ -188,7 +188,14 @@ export default function Employee(){
                                 <td>{plant.species}</td>
                                 <td>{plant.carnivorous}</td>
                                 <td>{plant.zone}</td>
-                                <td><img src="images/default.jpeg" alt="Default Image" id="tabImg"/></td>
+                                <td>
+                                    {plant.image && (
+                                        <img
+                                            id="tabImg"
+                                            src={`data:image/jpeg;base64, ${plant.image}`}
+                                        />
+                                    )}
+                                </td>
                                 <td>
                                     <Link to={`/updatePlant/${plant.id}`} >
                                         <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
