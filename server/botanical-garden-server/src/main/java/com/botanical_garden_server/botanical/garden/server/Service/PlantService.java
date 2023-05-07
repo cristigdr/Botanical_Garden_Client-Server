@@ -17,7 +17,7 @@ public class PlantService {
     private IPlantRepository plantRepo;
 
     public List<Plant> getPlants(){
-        return(List<Plant>) this.plantRepo.findAll();
+        return(List<Plant>) this.plantRepo.findByOrderByTypeAscSpeciesAsc();
     }
 
     public Optional<Plant> getPlantById(Long id){

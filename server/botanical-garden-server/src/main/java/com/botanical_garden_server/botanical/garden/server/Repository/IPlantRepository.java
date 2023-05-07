@@ -12,6 +12,8 @@ import java.util.List;
 @Repository
 public interface IPlantRepository extends JpaRepository<Plant, Long> {
 
+    List<Plant> findByOrderByTypeAscSpeciesAsc();
+
     default List<Plant> filterPlants(String criteria, String value) {
         List<Plant> allPlants = findAll();
         List<Plant> filteredPlants = new ArrayList<>();
