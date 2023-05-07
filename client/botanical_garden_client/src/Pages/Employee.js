@@ -22,15 +22,18 @@ export default function Employee(){
         setButtonText(event.target.innerText);
     }
 
+
     const [showSearchForm, setshowSearchForm] = useState(false);
 
     const handleMouseEnter = () => {
         setshowSearchForm(true);
     }
 
+
     const handleMouseLeave = () => {
         setshowSearchForm(false);
     }
+
 
     useEffect( () =>{
         async function fetchAllPlants(){
@@ -43,6 +46,16 @@ export default function Employee(){
         }
         fetchAllPlants();
     }, []);
+
+    const handeDeletePlant = async (id) => {
+        try {
+            await httpClient.delete(`http://localhost:8080/deletePlant/${id}`);
+            setPlants(plants.filter((plant) => plant.id !== id));
+        } catch (error) {
+            console.error(error);
+        }
+    };
+
 
     return(
         <div id ="employeePage">
@@ -156,7 +169,9 @@ export default function Employee(){
                                         <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
                                     </Link>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <FontAwesomeIcon icon={faTrash} />
+                                    <FontAwesomeIcon icon={faTrash}
+                                                     onClick={() => handeDeletePlant(plant.id)}
+                                    />
                                 </td>
                             </tr>
                         ))}
