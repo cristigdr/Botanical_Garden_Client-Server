@@ -37,6 +37,7 @@ export default function AddUser(){
                                placeholder="name@example.com"
                                value={addUserData.user}
                                onChange={(e) => setAddUserData({ ...addUserData, user: e.target.value })}
+                               required={true}
                         ></input>
                         <label htmlFor="floatingInput"><strong>Utilizator</strong></label>
                     </div>
@@ -48,6 +49,7 @@ export default function AddUser(){
                                placeholder="name@example.com"
                                value={addUserData.password}
                                onChange={(e) => setAddUserData({ ...addUserData, password: e.target.value })}
+                               required={true}
                         ></input>
                         <label htmlFor="floatingInput"><strong>Parola</strong></label>
                     </div>

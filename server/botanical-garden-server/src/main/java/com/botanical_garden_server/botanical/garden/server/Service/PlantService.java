@@ -1,12 +1,12 @@
 package com.botanical_garden_server.botanical.garden.server.Service;
 
 import com.botanical_garden_server.botanical.garden.server.Model.Plant;
-import com.botanical_garden_server.botanical.garden.server.Model.User;
 import com.botanical_garden_server.botanical.garden.server.Repository.IPlantRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class PlantService {
@@ -17,6 +17,11 @@ public class PlantService {
     public List<Plant> getPlants(){
         return(List<Plant>) this.plantRepo.findAll();
     }
+
+    public Optional<Plant> getPlantById(Long id){
+        return this.plantRepo.findById(id);
+    }
+
 
     public Plant inserPlant(Plant plant){
         return this.plantRepo.save(plant);

@@ -21,6 +21,7 @@ public class AdminController {
         return this.userService.getUsers();
     }
 
+
     @GetMapping("/getUser/{id}")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
@@ -35,6 +36,7 @@ public class AdminController {
     public User insertUser(@RequestBody User user){
         return this.userService.insertUser(user);
     }
+
 
     @PutMapping("/updateUser")
     @ResponseBody
