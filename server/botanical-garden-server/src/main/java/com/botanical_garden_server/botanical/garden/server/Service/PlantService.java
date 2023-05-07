@@ -24,6 +24,7 @@ public class PlantService {
         return this.plantRepo.findById(id);
     }
 
+    public List<Object[]> getCarnivorousCount(){return this.plantRepo.countByCarnivorous();}
 
     public Plant insertPlant(Plant plant, MultipartFile imageFile) throws IOException {
         byte[] imageBytes = null;

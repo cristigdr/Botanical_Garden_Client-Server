@@ -1,55 +1,114 @@
-import React, { useEffect, useRef } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
+import httpClient from "./httpClient";
 
-export default function AddUser() {
-    const chartContainer = useRef(null);
-    const chartInstance = useRef(null);
+export default function StatisticsPlants() {
+    const chartContainerCarn = useRef(null);
+    const chartInstanceCarn = useRef(null);
+    const chartContainerZone = useRef(null);
+    const chartInstanceZone = useRef(null);
+    const [carnCount, setCarnCount] = useState([]);
 
     useEffect(() => {
-        if (chartContainer && chartContainer.current) {
+        async function fetchCarnCount() {
+            try {
+                const response = await httpClient.get(
+                    "http://localhost:8080/getCarnCount"
+                );
+                setCarnCount(response.data);
+                localStorage.setItem("carnCount", JSON.stringify(response.data)); // Store data in localStorage
+            } catch (error) {
+                console.error(error);
+            }
+        }
+
+        fetchCarnCount();
+    }, []);
+
+    useEffect(() => {
+        if (chartContainerCarn && chartContainerCarn.current) {
             // Destroy previous chart instance, if it exists
-            if (chartInstance.current) {
-                chartInstance.current.destroy();
+            if (chartInstanceCarn.current) {
+                chartInstanceCarn.current.destroy();
             }
 
             const chartData = {
-                labels: ["Yes", "No"],
+                labels: ["Nu", "Da"],
                 datasets: [
                     {
-                        data: [40, 60],
-                        backgroundColor: ["#36a2eb", "#ff6384"],
+                        data: carnCount.map((item) => item[1]),
+                        backgroundColor: ["#40A5D1", "#FF5733"],
                         borderWidth: 1,
                     },
                 ],
             };
 
-            chartInstance.current = new Chart(chartContainer.current, {
+            chartInstanceCarn.current = new Chart(
+                chartContainerCarn.current,
+                {
+                    type: "pie",
+                    data: chartData,
+                }
+            );
+        }
+        
+    }, [carnCount]);
+
+    useEffect(() => {
+        if (chartContainerZone && chartContainerZone.current) {
+            // Destroy previous chart instance, if it exists
+            if (chartInstanceZone.current) {
+                chartInstanceZone.current.destroy();
+            }
+
+            const chartData = {
+                labels: ["A", "B", "C", "D"],
+                datasets: [
+                    {
+                        data: [30,50,20,10],
+                        backgroundColor: ["#C70039","#FF5733","#FFC300","#DAF7A6"],
+                        borderWidth: 1,
+                    },
+                ],
+            };
+
+            chartInstanceZone.current = new Chart(chartContainerZone.current, {
                 type: "pie",
                 data: chartData,
             });
         }
 
         return () => {
-            if (chartInstance.current) {
-                chartInstance.current.destroy();
+            if (chartInstanceCarn.current) {
+                chartInstanceCarn.current.destroy();
             }
         };
     }, []);
 
+
     const chartStyles = {
-        width: "40%",
-        height: "40%",
+        width: "100%",
+        height: "100%",
         float: "left",
     };
 
     return (
         <div id="statsPlantsPage">
+            <div id="charts">
+                <div>
+                    <h2>Plante Carnivore</h2>
+                    <div style={chartStyles}>
+                        <canvas ref={chartContainerCarn} />
+                    </div>
+                </div>
 
-            <h2>Plante Carnivore</h2>
-            <div style={chartStyles}>
-                <canvas ref={chartContainer} />
+                <div>
+                    <h2>Plante in zone</h2>
+                    <div style={chartStyles}>
+                        <canvas ref={chartContainerZone} />
+                    </div>
+                </div>
             </div>
-
         </div>
     );
 }

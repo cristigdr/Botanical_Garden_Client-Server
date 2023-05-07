@@ -24,6 +24,14 @@ public class PlantController {
     }
 
 
+    @GetMapping("/getCarnCount")
+    @ResponseBody
+    @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")
+    public List<Object[]> getCarnCount(){
+        return this.plantService.getCarnivorousCount();
+    }
+
+
     @GetMapping("/getPlant/{id}")
     @ResponseBody
     @CrossOrigin(origins = "http://localhost:3000", allowCredentials = "true")

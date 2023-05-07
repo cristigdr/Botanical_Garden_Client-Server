@@ -253,13 +253,19 @@ img {
 #statsPlantsPage {
   height: 100vh;
   width: 100vw;
-  background-image: url("../public/images/AdobeStock_244200854_Preview.jpeg");
+  background-image: url("../public/images/AdobeStock_270213289_Preview.jpeg");
   background-size: cover;
   background-position: center;
   overflow-y: scroll;
 }
+#statsPlantsPage h2{
+  text-align: center;
+}
 
-#statsPlantsPage {
-  
-
+#charts{
+  display: flex;
+  flex-direction: row;
+  gap: 10%;
+  margin-left: 5%;
+  margin-top: 5%;
 }

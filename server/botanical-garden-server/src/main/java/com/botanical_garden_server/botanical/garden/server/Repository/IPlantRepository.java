@@ -3,6 +3,7 @@ package com.botanical_garden_server.botanical.garden.server.Repository;
 import com.botanical_garden_server.botanical.garden.server.Model.Plant;
 import org.springframework.data.jpa.domain.Specification;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
@@ -11,6 +12,9 @@ import java.util.List;
 
 @Repository
 public interface IPlantRepository extends JpaRepository<Plant, Long> {
+
+    @Query("SELECT p.carnivorous, COUNT(p) FROM Plant p GROUP BY p.carnivorous")
+    List<Object[]> countByCarnivorous();
 
     List<Plant> findByOrderByTypeAscSpeciesAsc();
 

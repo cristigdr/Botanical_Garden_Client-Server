@@ -102,13 +102,13 @@ export default function Guest(){
                                         src={`data:image/jpeg;base64, ${plant.image}`}
                                     />
                                 )}
-                                <h5 className="card-title" style={{marginTop: "6%", textAlign: "center"}}><b>Denumire:</b>{plant.name}</h5>
+                                <h5 className="card-title" style={{marginTop: "6%", textAlign: "center"}}><b>Denumire:</b><br/>{plant.name}</h5>
 
                             </div>
                             <ul className="list-group list-group-flush">
                                 <li className="list-group-item"><b>Tip:</b> &nbsp; {plant.type}</li>
                                 <li className="list-group-item"><b>Specie:</b> &nbsp; {plant.species}</li>
-                                <li className="list-group-item"><b>Planta carnivora:</b> &nbsp; {plant.type}</li>
+                                <li className="list-group-item"><b>Planta carnivora:</b> &nbsp; {plant.carnivorous}</li>
                                 <li className="list-group-item"><b>Zona gradina botanica:</b> &nbsp; {plant.zone}</li>
                             </ul>
                     </div>
