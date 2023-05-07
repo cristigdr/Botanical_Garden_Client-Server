@@ -14,17 +14,17 @@ export default function UpdateUser(){
 
 
 
-        useEffect(() => {
-            async function fetchUser(){
-                try {
-                    const response = await httpClient.get(`http://localhost:8080/getUser/${id}`);
-                    setUserData(response.data);
+    useEffect(() => {
+        async function fetchUser(){
+            try {
+                const response = await httpClient.get(`http://localhost:8080/getUser/${id}`);
+                setUserData(response.data);
 
-                } catch (error) {
-                    console.error(error);
-                }
-            }fetchUser();
-        }, [id]);
+            } catch (error) {
+                console.error(error);
+            }
+        }fetchUser();
+    }, [id]);
 
     const handleSubmit = async () => {
         try {
@@ -92,8 +92,7 @@ export default function UpdateUser(){
                                 value="administrator"
                                 checked={userData.role === "administrator"}
                                 onChange={(e) => setUserData({ ...userData, role: e.target.value })}
-                            />{" "}
-                            Administrator
+                            /> Administrator
                         </label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -105,8 +104,7 @@ export default function UpdateUser(){
                                 value="angajat"
                                 checked={userData.role === "angajat"}
                                 onChange={(e) => setUserData({ ...userData, role: e.target.value })}
-                            />{" "}
-                            Angajat
+                            /> Angajat
                         </label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;

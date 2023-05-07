@@ -152,7 +152,7 @@ export default function Employee(){
                                 <td>{plant.zone}</td>
                                 <td><img src="images/default.jpeg" alt="Default Image" id="tabImg"/></td>
                                 <td>
-                                    <Link to='/updatePlant' >
+                                    <Link to={`/updatePlant/${plant.id}`} >
                                         <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
                                     </Link>
                                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
