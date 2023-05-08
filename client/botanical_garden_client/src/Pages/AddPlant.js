@@ -42,8 +42,7 @@ export default function AddPlant(){
     };
 
     return(
-        <div id ="employeePage">
-            <div className="text" style={{ width: '50%'}}>Adaugare planta:</div>
+        <div id ="i">
 
             <div className="card" id="addPlantCard" style={{ width: "18rem" }}>
                 <div className="card-body" >

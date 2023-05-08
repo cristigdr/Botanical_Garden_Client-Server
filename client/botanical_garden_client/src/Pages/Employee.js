@@ -15,6 +15,8 @@ import xmlBuilder from "xmlbuilder";
 import {I18nextProvider, useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import "/node_modules/flag-icons/css/flag-icons.min.css";
+import * as bootstrap from 'bootstrap';
+import AddPlant from "./AddPlant";
 
 
 export default function Employee(){
@@ -145,6 +147,11 @@ export default function Employee(){
     }
 
 
+    const openModal = () => {
+        const modal = new bootstrap.Modal(document.getElementById("addPlant"));
+        modal.show();
+    }
+
     return(
         <I18nextProvider i18n={i18n}>
 
@@ -197,9 +204,7 @@ export default function Employee(){
                     <div style={{ display: "flex", alignItems: "center", marginBottom: "3%"}}>
 
                         <div style={{ display: "flex", alignItems: "center" }}>
-                            <Link to='/addPlant' >
-                                <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white" }} />
-                            </Link>
+                                <FontAwesomeIcon id="modal-icon" icon={faPlus} size="2xl" style={{ color: "white", cursor:"pointer" }} onClick={openModal}/>
                             <span style={{ marginLeft: "10px", color: "white" }}>{t("employeePage.addPl")}</span>
                         </div>
 
@@ -303,6 +308,26 @@ export default function Employee(){
                             ))}
                         </tbody>
                     </table>
+                </div>
+
+
+
+                <div className="modal fade" id="addPlant" tabIndex="-1" aria-labelledby="addPlantLabel"
+                     aria-hidden="true">
+                    <div className="modal-dialog" style={{width: "fit-content"}}>
+                        <div className="modal-content">
+                            <div className="modal-header">
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">{t("employeePage.addPl")}</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+
+                                <AddPlant/>
+
+                            </div>
+                        </div>
+                    </div>
                 </div>
 
             </div>
