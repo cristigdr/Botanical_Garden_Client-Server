@@ -8,6 +8,7 @@ import {
     faPlus,
     faTrash,
 
+
 } from "@fortawesome/free-solid-svg-icons";
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
@@ -74,6 +75,17 @@ export default function Employee(){
     }
 
 
+    //download data in JSON format
+    const downloadJsonData = () => {
+        const filteredData = plants.map(({ image, ...rest }) => rest); // remove the 'image' property from each object
+        const jsonData = JSON.stringify(filteredData, null, 2); // convert data to JSON string with pretty-printing
+        const blob = new Blob([jsonData], { type: "application/json" }); // create a Blob object
+        const url = URL.createObjectURL(blob); // create a temporary URL for the Blob object
+        const link = document.createElement("a"); // create a link element
+        link.href = url; // set the link URL to the temporary URL
+        link.download = "plants.json"; // set the download file name
+        link.click(); // simulate a click on the link to trigger the download
+    };
 
     return(
         <div id ="employeePage">
@@ -149,10 +161,9 @@ export default function Employee(){
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <label style={{color: "white", fontWeight: "bold"}}>{"{ "}</label>
-                        <span style={{color: "white"}}>&nbsp;&nbsp;</span>
-                        <label style={{color: "white", fontWeight: "bold"}}>{" }"}</label>
-                        <span style={{ marginLeft: "10px", color: "white" }}>json</span>
+                        <span style={{ marginLeft: "10px", color: "white", cursor:"pointer" }} onClick={downloadJsonData}>
+                            <b style={{fontSize: "125%"}}>{"{ }"}</b> &nbsp;&nbsp;json
+                        </span>
                     </div>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
