@@ -1,0 +1,9 @@
+{
+  "loginForm": {
+    "title": "Jardín Botánico Alexandru Borza",
+    "username": "Nombre de usuario",
+    "password": "Contraseña",
+    "loginButton": "Iniciar sesión",
+    "guestButton": "Ver como invitado"
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "loginForm": {
+    "title": "Grădina Botanică Alexandru Borza",
+    "username": "Nume utilizator",
+    "password": "Parolă",
+    "loginButton": "Autentificare",
+    "guestButton": "Vizualizare ca vizitator"
+  }
+}

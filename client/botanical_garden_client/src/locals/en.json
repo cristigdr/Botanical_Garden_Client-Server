@@ -1,0 +1,9 @@
+{
+  "loginForm": {
+    "title": "Alexandru Borza Botanical Garden",
+    "username": "Username",
+    "password": "Password",
+    "loginButton": "Login",
+    "guestButton": "View as guest"
+  }
+}
