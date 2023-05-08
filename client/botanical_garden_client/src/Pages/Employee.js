@@ -121,6 +121,23 @@ export default function Employee(){
         link.click();
     };
 
+    //download data in txt format
+    const downloadTextData = () => {
+        const filteredData = plants.map(({ image, ...rest }) => rest);
+        const txtData = filteredData
+            .map((plant) => Object.entries(plant)
+                .map(([key, value]) => `${key}: ${value}`)
+                .join("\n")
+            )
+            .join("\n\n");
+        const blob = new Blob([txtData], { type: "text/plain" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "plants.txt";
+        link.click();
+    };
+
 
     return(
         <div id ="employeePage">
@@ -193,8 +210,11 @@ export default function Employee(){
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     <div style={{ display: "flex", alignItems: "center" }}>
-                        <FontAwesomeIcon icon={faFileLines} size="lg" style={{color: "#ffffff",}} />
-                        <span style={{ marginLeft: "10px", color: "white" }}>txt</span>
+                        <span style={{ marginLeft: "10px", color: "white" , cursor:"pointer"}}
+                              onClick={downloadTextData}>
+                            <FontAwesomeIcon icon={faFileLines} size="lg" style={{color: "#ffffff",}} />
+                            &nbsp;&nbsp;
+                            txt</span>
                     </div>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
