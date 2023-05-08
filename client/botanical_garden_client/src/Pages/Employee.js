@@ -1,4 +1,4 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
     faChartSimple, faCode,
     faFileCsv,
@@ -6,13 +6,15 @@ import {
     faMagnifyingGlass,
     faPen,
     faPlus,
-    faTrash,
-
-
+    faTrash
 } from "@fortawesome/free-solid-svg-icons";
+
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import httpClient from "./httpClient";
+import xmlBuilder from "xmlbuilder";
+
+
 
 export default function Employee(){
     const [buttonText, setButtonText] = useState('Criteriu');
@@ -85,6 +87,22 @@ export default function Employee(){
         link.href = url; // set the link URL to the temporary URL
         link.download = "plants.json"; // set the download file name
         link.click(); // simulate a click on the link to trigger the download
+    };
+
+
+    //download data in xml format
+    const downloadXmlData = () => {
+        const filteredData = plants.map(({ image, ...rest }) => rest);
+        const xmlData = xmlBuilder
+            .create("plants")
+            .ele(filteredData.map((plant) => ({ plant })))
+            .end({ pretty: true });
+        const blob = new Blob([xmlData], { type: "application/xml" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "plants.xml";
+        link.click();
     };
 
     return(
@@ -160,17 +178,25 @@ export default function Employee(){
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <span style={{ marginLeft: "10px", color: "white", cursor:"pointer" }} onClick={downloadJsonData}>
-                            <b style={{fontSize: "125%"}}>{"{ }"}</b> &nbsp;&nbsp;json
+                    <div>
+                        <span style={{ marginLeft: "10px", color: "white", cursor:"pointer", marginBottom:"5%" }}
+                              onClick={downloadJsonData}>
+                            <b style={{fontSize: "135%"}}>{"{ }"}</b>
+                            &nbsp;&nbsp;
+                            json
                         </span>
                     </div>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <FontAwesomeIcon icon={faCode} size="lg" style={{color: "#ffffff",}} />
-                        <span style={{ marginLeft: "10px", color: "white" }}>xml</span>
+                    <div>
+
+                        <span style={{ marginLeft: "10px", color: "white", cursor:"pointer" }}
+                              onClick={downloadXmlData}>
+                            <FontAwesomeIcon icon={faCode} size="lg" style={{color: "#ffffff",}} />
+                            &nbsp;&nbsp;
+                            xml
+                        </span>
                     </div>
 
                 </div>
