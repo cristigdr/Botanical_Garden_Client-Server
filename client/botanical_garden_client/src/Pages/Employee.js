@@ -105,6 +105,23 @@ export default function Employee(){
         link.click();
     };
 
+    //download data in csv format
+    const downloadCsvData = () => {
+        const filteredData = plants.map(({ image, ...rest }) => rest);
+        const header = Object.keys(filteredData[0]).join(",");
+        const csvRows = filteredData.map((plant) =>
+            Object.values(plant).map((value) => `"${value}"`).join(",")
+        );
+        const csvData = [header, ...csvRows].join("\n");
+        const blob = new Blob([csvData], { type: "text/csv" });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement("a");
+        link.href = url;
+        link.download = "plants.csv";
+        link.click();
+    };
+
+
     return(
         <div id ="employeePage">
 
@@ -164,9 +181,13 @@ export default function Employee(){
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <FontAwesomeIcon icon={faFileCsv} size="lg" style={{color: "#ffffff",}} />
-                        <span style={{ marginLeft: "10px", color: "white" }}>CVS</span>
+                    <div>
+
+                        <span style={{ marginLeft: "10px", color: "white" , cursor:"pointer"}}
+                              onClick={downloadCsvData}>
+                            <FontAwesomeIcon icon={faFileCsv} size="lg" style={{color: "#ffffff",}} />
+                            &nbsp;&nbsp;
+                            CSV</span>
                     </div>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
