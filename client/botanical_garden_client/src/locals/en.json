@@ -5,5 +5,22 @@
     "password": "Password",
     "loginButton": "Login",
     "guestButton": "View as guest"
+  },
+
+  "employeePage": {
+    "title": "Welcome",
+    "name": "Name",
+    "type": "Type",
+    "species": "Species",
+    "carnivorous": "Carnivorous plant",
+    "zone": "Zone",
+    "head": "Criterion",
+    "addPl": "Add plant",
+    "stats": "Statistics",
+    "imageTH": "Image",
+    "operationTH": "Operation",
+    "filter": "Filter",
+    "criteria": "Criteria"
+
   }
 }

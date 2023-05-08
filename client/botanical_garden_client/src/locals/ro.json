@@ -5,5 +5,21 @@
     "password": "Parolă",
     "loginButton": "Autentificare",
     "guestButton": "Vizualizare ca vizitator"
+  },
+
+  "employeePage": {
+    "title": "Bun venit",
+    "name": "Denumire",
+    "type": "Tip",
+    "species": "Specie",
+    "carnivorous": "Plantă carnivoră",
+    "zone": "Zonă",
+    "head": "Criteriu",
+    "addPl": "Adăugare plantă",
+    "stats": "Statistici",
+    "imageTH": "Imagine",
+    "operationTH": "Operație",
+    "filter": "Filtru",
+    "criteria": "Criteriu"
   }
 }

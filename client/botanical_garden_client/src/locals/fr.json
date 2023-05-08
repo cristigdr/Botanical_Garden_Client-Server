@@ -5,5 +5,21 @@
     "password": "Mot de passe",
     "loginButton": "Connexion",
     "guestButton": "Visualiser en tant qu'invité"
+  },
+
+  "employeePage": {
+    "title": "Bienvenue",
+    "name": "Nom",
+    "type": "Type",
+    "species": "Espèce",
+    "carnivorous": "Plante carnivore",
+    "zone": "Zone",
+    "head": "Critère",
+    "addPl": "Ajouter une plante",
+    "stats": "Statistiques",
+    "imageTH": "Image",
+    "operationTH": "Opération",
+    "filter": "Filtre",
+    "criteria": "Critère"
   }
 }

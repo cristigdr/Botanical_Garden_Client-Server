@@ -28,42 +28,41 @@ export default function Login(){
     return (
         <I18nextProvider i18n={i18n}>
 
-        <div id="loginPage">
+            <div id="loginPage">
 
-                <div className="text" onMouseEnter={handleMouseEnter}>{t("loginForm.title")}</div>
+                    <div className="text" onMouseEnter={handleMouseEnter}>{t("loginForm.title")}</div>
 
-                <div id="loginForm" style={{ display: showLoginForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
+                    <div id="loginForm" style={{ display: showLoginForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
 
-                    <div id="credentials">
-                        <div className="form-floating mb-3">
-                            <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
-                            <label htmlFor="floatingInput">{t("loginForm.username")}</label>
+                        <div id="credentials">
+                            <div className="form-floating mb-3">
+                                <input type="text" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                                <label htmlFor="floatingInput">{t("loginForm.username")}</label>
+                            </div>
+
+                            <div className="form-floating mb-3">
+                                <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
+                                <label htmlFor="floatingInput">{t("loginForm.password")}</label>
+                            </div>
                         </div>
 
-                        <div className="form-floating mb-3">
-                            <input type="password" className="form-control" id="floatingInput" placeholder="name@example.com"></input>
-                            <label htmlFor="floatingInput">{t("loginForm.password")}</label>
+                        <div id="buttonsLogin" >
+                            <button type="button" className="btn btn-success">{t("loginForm.loginButton")}</button>
+                            <Link to='/guest' style={{width: "100%"}}>
+                                <button type="button" className="btn btn-success">{t("loginForm.guestButton")}</button>
+                            </Link>
+                        </div>
+
+                        <div id="flagButtons">
+
+                            <span className="fi fi-ro" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('ro')}></span>
+                            <span className="fi fi-us" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('en')}></span>
+                            <span className="fi fi-es" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('es')}></span>
+                            <span className="fi fi-fr" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('fr')}></span>
+
                         </div>
                     </div>
-
-                    <div id="buttonsLogin" >
-                        <button type="button" className="btn btn-success">{t("loginForm.loginButton")}</button>
-                        <Link to='/guest' style={{width: "100%"}}>
-                            <button type="button" className="btn btn-success">{t("loginForm.guestButton")}</button>
-                        </Link>
-                    </div>
-
-                    <div id="flagButtons">
-
-                        <span className="fi fi-ro" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('ro')}></span>
-                        <span className="fi fi-us" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('en')}></span>
-                        <span className="fi fi-es" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('es')}></span>
-                        <span className="fi fi-fr" style={{ fontSize: '1.5rem', cursor: "pointer" }} onClick={() => handleLanguageChange('fr')}></span>
-
-                    </div>
-
-                </div>
-        </div>
+            </div>
         </I18nextProvider>
 
     )

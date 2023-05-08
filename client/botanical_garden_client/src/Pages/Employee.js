@@ -8,16 +8,18 @@ import {
     faPlus,
     faTrash
 } from "@fortawesome/free-solid-svg-icons";
-
 import {useEffect, useState} from "react";
 import {Link} from "react-router-dom";
 import httpClient from "./httpClient";
 import xmlBuilder from "xmlbuilder";
-
+import {I18nextProvider, useTranslation} from "react-i18next";
+import i18n from '../i18n';
+import "/node_modules/flag-icons/css/flag-icons.min.css";
 
 
 export default function Employee(){
-    const [buttonText, setButtonText] = useState('Criteriu');
+    const { t } = useTranslation();
+    const [buttonText, setButtonText] = useState(t("employeePage.criteria"));
     const[plants, setPlants] = useState([]);
     const [filterValue, setFilterValue] = useState('');
     const [filterCriteria, setFilterCriteria] = useState('');
@@ -138,157 +140,173 @@ export default function Employee(){
         link.click();
     };
 
+    function handleLanguageChange(language) {
+        i18n.changeLanguage(language);
+    }
+
 
     return(
-        <div id ="employeePage">
+        <I18nextProvider i18n={i18n}>
 
-            <div className="text" onMouseEnter={handleMouseEnter}>Bun venit!</div>
+            <div id ="employeePage">
 
-            <div id="searchForm" style={{ display: showSearchForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
+                <div className="text" onMouseEnter={handleMouseEnter}>{t("employeePage.title")}</div>
 
-                <div className="btn-group dropdown">
-                    <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" data-bs-trigger="hover" aria-expanded="false">
-                        {buttonText}
-                    </button>
-                    <ul className="dropdown-menu">
-                        <li><label className="dropdown-item" data-criteria="name" onClick={handleItemClick} >Denumire</label></li>
-                        <li><label className="dropdown-item"  data-criteria="type" onClick={handleItemClick} >Tip</label></li>
-                        <li><label className="dropdown-item"  data-criteria="species" onClick={handleItemClick} >Specie</label></li>
-                        <li><label className="dropdown-item"  data-criteria="carnivorous" onClick={handleItemClick} >Plantă carnivoră</label></li>
-                        <li><label className="dropdown-item" data-criteria="zone" onClick={handleItemClick} >Zonă</label></li>
-                    </ul>
-                </div>
+                <div id="searchForm" style={{ display: showSearchForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
 
-                <div id="input-container">
-                    <div className="form-floating mb-3">
-                        <input type="text"
-                               className="form-control"
-                               id="floatingInput"
-                               placeholder="name@example.com"
-                               value={filterValue}
-                               onChange={(event) => setFilterValue(event.target.value)}
-                        ></input>
-                        <label htmlFor="floatingInput">Filtru</label>
-                    </div>
-                    <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" style={{color: "#307853",}} onClick={handleFilterClick}
-                    />
-                </div>
-
-            </div>
-
-            <div id="tableEmployee" style={{top: showSearchForm ? '30%' : '20%'}}>
-
-                <div style={{ display: "flex", alignItems: "center", marginBottom: "3%"}}>
-
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <Link to='/addPlant' >
-                            <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white" }} />
-                        </Link>
-                        <span style={{ marginLeft: "10px", color: "white" }}>Adaugare Planta</span>
+                    <div className="btn-group dropdown">
+                        <button type="button" className="btn btn-success dropdown-toggle" data-bs-toggle="dropdown" data-bs-trigger="hover" aria-expanded="false">
+                            {buttonText}
+                        </button>
+                        <ul className="dropdown-menu">
+                            <li><label className="dropdown-item" data-criteria="name" onClick={handleItemClick} >{t("employeePage.name")}</label></li>
+                            <li><label className="dropdown-item"  data-criteria="type" onClick={handleItemClick} >{t("employeePage.type")}</label></li>
+                            <li><label className="dropdown-item"  data-criteria="species" onClick={handleItemClick} >{t("employeePage.species")}</label></li>
+                            <li><label className="dropdown-item"  data-criteria="carnivorous" onClick={handleItemClick} >{t("employeePage.carnivorous")}</label></li>
+                            <li><label className="dropdown-item" data-criteria="zone" onClick={handleItemClick} >{t("employeePage.zone")}</label></li>
+                        </ul>
                     </div>
 
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                    <div id="input-container">
+                        <div className="form-floating mb-3">
+                            <input type="text"
+                                   className="form-control"
+                                   id="floatingInput"
+                                   placeholder="name@example.com"
+                                   value={filterValue}
+                                   onChange={(event) => setFilterValue(event.target.value)}
+                            ></input>
+                            <label htmlFor="floatingInput">{t("employeePage.filter")}</label>
+                        </div>
+                        <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" style={{color: "#307853",}} onClick={handleFilterClick}
+                        />
+                        <div id="flagButtons" >
 
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <Link to='/statsPlants' >
-                            <FontAwesomeIcon icon={faChartSimple} size="xl" style={{color: "white",}} />
-                        </Link>
-                        <span style={{ marginLeft: "10px", color: "white" }}>Statistici</span>
-                    </div>
+                            <span className="fi fi-ro" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('ro')}></span>
+                            <span className="fi fi-us" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('en')}></span>
+                            <span className="fi fi-es" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('es')}></span>
+                            <span className="fi fi-fr" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('fr')}></span>
 
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    <div>
-
-                        <span style={{ marginLeft: "10px", color: "white" , cursor:"pointer"}}
-                              onClick={downloadCsvData}>
-                            <FontAwesomeIcon icon={faFileCsv} size="lg" style={{color: "#ffffff",}} />
-                            &nbsp;&nbsp;
-                            CSV</span>
-                    </div>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    <div style={{ display: "flex", alignItems: "center" }}>
-                        <span style={{ marginLeft: "10px", color: "white" , cursor:"pointer"}}
-                              onClick={downloadTextData}>
-                            <FontAwesomeIcon icon={faFileLines} size="lg" style={{color: "#ffffff",}} />
-                            &nbsp;&nbsp;
-                            txt</span>
-                    </div>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    <div>
-                        <span style={{ marginLeft: "10px", color: "white", cursor:"pointer", marginBottom:"5%" }}
-                              onClick={downloadJsonData}>
-                            <b style={{fontSize: "135%"}}>{"{ }"}</b>
-                            &nbsp;&nbsp;
-                            json
-                        </span>
-                    </div>
-
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-                    <div>
-
-                        <span style={{ marginLeft: "10px", color: "white", cursor:"pointer" }}
-                              onClick={downloadXmlData}>
-                            <FontAwesomeIcon icon={faCode} size="lg" style={{color: "#ffffff",}} />
-                            &nbsp;&nbsp;
-                            xml
-                        </span>
+                        </div>
                     </div>
 
                 </div>
 
-                <table className="table table-hover">
+                <div id="tableEmployee" style={{top: showSearchForm ? '30%' : '20%'}}>
 
-                    <thead>
-                    <tr>
-                        <th scope="col">Id</th>
-                        <th scope="col">Denumire</th>
-                        <th scope="col">Tip</th>
-                        <th scope="col">Specie</th>
-                        <th scope="col">Planta Carnivora</th>
-                        <th scope="col">Zona Gradina</th>
-                        <th scope="col">Imagine</th>
-                        <th scope="col">Operatii</th>
-                    </tr>
-                    </thead>
+                    <div style={{ display: "flex", alignItems: "center", marginBottom: "3%"}}>
 
-                    <tbody>
-                        {plants.map(plant => (
-                            <tr key={plant.id}>
-                                <th scope="row">{plant.id}</th>
-                                <td>{plant.name}</td>
-                                <td>{plant.type}</td>
-                                <td>{plant.species}</td>
-                                <td>{plant.carnivorous}</td>
-                                <td>{plant.zone}</td>
-                                <td>
-                                    {plant.image && (
-                                        <img
-                                            id="tabImg"
-                                            src={`data:image/jpeg;base64, ${plant.image}`}
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <Link to='/addPlant' >
+                                <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white" }} />
+                            </Link>
+                            <span style={{ marginLeft: "10px", color: "white" }}>{t("employeePage.addPl")}</span>
+                        </div>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <Link to='/statsPlants' >
+                                <FontAwesomeIcon icon={faChartSimple} size="xl" style={{color: "white",}} />
+                            </Link>
+                            <span style={{ marginLeft: "10px", color: "white" }}>{t("employeePage.stats")}</span>
+                        </div>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <div>
+
+                            <span style={{ marginLeft: "10px", color: "white" , cursor:"pointer"}}
+                                  onClick={downloadCsvData}>
+                                <FontAwesomeIcon icon={faFileCsv} size="lg" style={{color: "#ffffff",}} />
+                                &nbsp;&nbsp;
+                                CSV</span>
+                        </div>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <div style={{ display: "flex", alignItems: "center" }}>
+                            <span style={{ marginLeft: "10px", color: "white" , cursor:"pointer"}}
+                                  onClick={downloadTextData}>
+                                <FontAwesomeIcon icon={faFileLines} size="lg" style={{color: "#ffffff",}} />
+                                &nbsp;&nbsp;
+                                txt</span>
+                        </div>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <div>
+                            <span style={{ marginLeft: "10px", color: "white", cursor:"pointer", marginBottom:"5%" }}
+                                  onClick={downloadJsonData}>
+                                <b style={{fontSize: "135%"}}>{"{ }"}</b>
+                                &nbsp;&nbsp;
+                                json
+                            </span>
+                        </div>
+
+                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
+                        <div>
+
+                            <span style={{ marginLeft: "10px", color: "white", cursor:"pointer" }}
+                                  onClick={downloadXmlData}>
+                                <FontAwesomeIcon icon={faCode} size="lg" style={{color: "#ffffff",}} />
+                                &nbsp;&nbsp;
+                                xml
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <table className="table table-hover" style={{marginBottom: "5%"}}>
+
+                        <thead>
+                        <tr>
+                            <th scope="col">Id</th>
+                            <th scope="col">{t("employeePage.name")}</th>
+                            <th scope="col">{t("employeePage.type")}</th>
+                            <th scope="col">{t("employeePage.species")}</th>
+                            <th scope="col">{t("employeePage.carnivorous")}</th>
+                            <th scope="col">{t("employeePage.zone")}</th>
+                            <th scope="col">{t("employeePage.imageTH")}</th>
+                            <th scope="col">{t("employeePage.operationTH")}</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                            {plants.map(plant => (
+                                <tr key={plant.id}>
+                                    <th scope="row">{plant.id}</th>
+                                    <td>{plant.name}</td>
+                                    <td>{plant.type}</td>
+                                    <td>{plant.species}</td>
+                                    <td>{plant.carnivorous}</td>
+                                    <td>{plant.zone}</td>
+                                    <td>
+                                        {plant.image && (
+                                            <img
+                                                id="tabImg"
+                                                src={`data:image/jpeg;base64, ${plant.image}`}
+                                            />
+                                        )}
+                                    </td>
+                                    <td>
+                                        <Link to={`/updatePlant/${plant.id}`} >
+                                            <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
+                                        </Link>
+                                        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                        <FontAwesomeIcon icon={faTrash}
+                                                         onClick={() => handeDeletePlant(plant.id)}
                                         />
-                                    )}
-                                </td>
-                                <td>
-                                    <Link to={`/updatePlant/${plant.id}`} >
-                                        <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
-                                    </Link>
-                                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <FontAwesomeIcon icon={faTrash}
-                                                     onClick={() => handeDeletePlant(plant.id)}
-                                    />
-                                </td>
-                            </tr>
-                        ))}
-                    </tbody>
-                </table>
-            </div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
 
-        </div>
+            </div>
+        </I18nextProvider>
+
     )
 }
