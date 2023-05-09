@@ -20,7 +20,9 @@
     "imageTH": "Imagen",
     "operationTH": "Operación",
     "filter": "Filtro",
-    "criteria": "Criterio"
+    "criteria": "Criterio",
+    "loadImg": "Cargar imagen",
+    "addPlBttn": "Agregar"
 
   }
 }

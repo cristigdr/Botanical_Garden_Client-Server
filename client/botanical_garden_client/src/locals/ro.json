@@ -20,6 +20,8 @@
     "imageTH": "Imagine",
     "operationTH": "Operație",
     "filter": "Filtru",
-    "criteria": "Criteriu"
+    "criteria": "Criteriu",
+    "loadImg": "Încarcă o imagine",
+    "addPlBttn": "Adăugare"
   }
 }

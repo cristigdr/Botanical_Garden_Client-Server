@@ -20,7 +20,9 @@
     "imageTH": "Image",
     "operationTH": "Operation",
     "filter": "Filter",
-    "criteria": "Criteria"
+    "criteria": "Criteria",
+    "loadImg": "Load image",
+    "addPlBttn": "Add"
 
   }
 }
