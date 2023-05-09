@@ -15,9 +15,10 @@ import xmlBuilder from "xmlbuilder";
 import {I18nextProvider, useTranslation} from "react-i18next";
 import i18n from '../i18n';
 import "/node_modules/flag-icons/css/flag-icons.min.css";
-import * as bootstrap from 'bootstrap';
 import AddPlant from "./AddPlant";
-
+import { Modal } from 'bootstrap';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import 'bootstrap/dist/js/bootstrap.bundle.min.js';
 
 export default function Employee(){
     const { t } = useTranslation();
@@ -148,9 +149,13 @@ export default function Employee(){
 
 
     const openModal = () => {
-        const modal = new bootstrap.Modal(document.getElementById("addPlant"));
+        const modalElement = document.getElementById("addPlant");
+        const modal = new Modal(modalElement);
         modal.show();
-    }
+    };
+
+
+
 
     return(
         <I18nextProvider i18n={i18n}>
