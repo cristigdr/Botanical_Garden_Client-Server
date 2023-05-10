@@ -8,7 +8,7 @@
   },
 
   "employeePage": {
-    "title": "Welcome",
+    "title": "Welcome!",
     "name": "Name",
     "type": "Type",
     "species": "Species",
@@ -29,5 +29,22 @@
     "carnivorousChart": "Number of carnivorous plants:",
     "yesLabel": "Yes",
     "noLabel": "No"
+  },
+
+  "adminPage": {
+    "title": "Welcome!",
+    "filterUsers": "Filter users:",
+    "admin": "Administrator",
+    "employee": "Employee",
+    "adminData": "administrator",
+    "employeeData": "employee",
+    "addUser": "Add User",
+    "userName": "User",
+    "password": "Password",
+    "role": "Role",
+    "operations": "Operations",
+    "addUsBttn": "Add",
+    "updateUsBttn": "Update",
+    "updateUser": "Update User"
   }
 }

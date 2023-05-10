@@ -8,7 +8,7 @@
   },
 
   "employeePage": {
-    "title": "Bun venit",
+    "title": "Bun venit!",
     "name": "Denumire",
     "type": "Tip",
     "species": "Specie",
@@ -29,8 +29,22 @@
     "carnivorousChart": "Număr plante carnivore:",
     "yesLabel": "Da",
     "noLabel": "Nu"
+  },
 
-
-
+  "adminPage": {
+    "title": "Bun venit!",
+    "filterUsers": "Filtrare utilizatori:",
+    "admin": "Administrator",
+    "employee": "Angajat",
+    "adminData": "administrator",
+    "employeeData": "angajat",
+    "addUser": "Adăugare Utilizator",
+    "userName": "Utilizator",
+    "password": "Parolă",
+    "role": "Role",
+    "operations": "Operație",
+    "addUsBttn": "Adăugare",
+    "updateUsBttn": "Actualizare",
+    "updateUser": "Actualizare Utilizator"
   }
 }

@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
 import httpClient from "./httpClient";
-
+import {I18nextProvider, useTranslation} from "react-i18next";
+import i18n from "../i18n";
 
 export default function UpdateUser({ id }){
 
+    const { t } = useTranslation();
     const [userData, setUserData] = useState({
         name: '',
         password: '',
@@ -37,7 +39,8 @@ export default function UpdateUser({ id }){
     };
 
     return(
-        
+        <I18nextProvider i18n={i18n}>
+
             <div className="card" style={{ width: "18rem" }}>
 
                 <ul className="list-group list-group-flush">
@@ -62,7 +65,7 @@ export default function UpdateUser({ id }){
                                value={userData.user}
                                onChange={(e) => setUserData({ ...userData, user: e.target.value })}
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Utilizator:</strong></label>
+                        <label htmlFor="floatingInput"><strong>{t("adminPage.userName")}:</strong></label>
                     </div>
 
                     <div className="form-floating mb-3">
@@ -74,21 +77,21 @@ export default function UpdateUser({ id }){
                                value={userData.password}
                                onChange={(e) => setUserData({ ...userData, password: e.target.value })}
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Parola:</strong></label>
+                        <label htmlFor="floatingInput"><strong>{t("adminPage.password")}:</strong></label>
                     </div>
 
                     <li className="list-group-item">
 
-                        <strong>Rol:</strong> <br/>
+                        <strong>{t("adminPage.role")}:</strong> <br/>
 
                         <label>
                             <input
                                 type="radio"
                                 name="zone"
-                                value="administrator"
-                                checked={userData.role === "administrator"}
+                                value={t("adminPage.adminData")}
+                                checked={userData.role === t("adminPage.adminData")}
                                 onChange={(e) => setUserData({ ...userData, role: e.target.value })}
-                            /> Administrator
+                            /> {t("adminPage.admin")}
                         </label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -97,10 +100,10 @@ export default function UpdateUser({ id }){
                             <input
                                 type="radio"
                                 name="zone"
-                                value="angajat"
-                                checked={userData.role === "angajat"}
+                                value={t("adminPage.employeeData")}
+                                checked={userData.role === t("adminPage.employeeData")}
                                 onChange={(e) => setUserData({ ...userData, role: e.target.value })}
-                            /> Angajat
+                            /> {t("adminPage.employee")}
                         </label>
 
                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -110,10 +113,11 @@ export default function UpdateUser({ id }){
                             className="btn btn-success"
                             style={{width: 'fit-content', margin: "5% auto"}}
                             onClick={handleSubmit}
-                    >Actualizare</button>
+                    >{t("adminPage.updateUsBttn")}</button>
 
                 </ul>
             </div>
 
+        </I18nextProvider>
     )
 }
