@@ -22,6 +22,8 @@
     "filter": "Filtre",
     "criteria": "Critère",
     "loadImg": "Charger une image",
-    "addPlBttn": "Ajouter"
+    "addPlBttn": "Ajouter",
+    "updatePl": "Actualizar Planta",
+    "updatePlBttn": "Actualizar"
   }
 }

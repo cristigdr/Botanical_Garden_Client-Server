@@ -1,9 +1,11 @@
 import {useEffect, useState} from "react";
 import httpClient from "./httpClient";
+import {I18nextProvider, useTranslation} from "react-i18next";
+import i18n from "../i18n";
 
 export default function UpdatePlant({ id }) {
 
-
+    const { t } = useTranslation();
     const [plantData, setPlantData] = useState({
         id: "",
         name: "",
@@ -39,7 +41,9 @@ export default function UpdatePlant({ id }) {
     };
 
     return(
-        <div id ="i">
+        <I18nextProvider i18n={i18n}>
+
+                <div id ="i">
 
             <div className="card" id="updatePlantCard" style={{ width: "18rem" }}>
 
@@ -65,7 +69,7 @@ export default function UpdatePlant({ id }) {
                                value={plantData.name}
                                onChange={(e) => setPlantData({ ...plantData, name: e.target.value })}
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Denumire</strong></label>
+                        <label htmlFor="floatingInput"><strong>{t("employeePage.name")}:</strong></label>
                     </div>
 
                     <div className="form-floating mb-3">
@@ -76,7 +80,7 @@ export default function UpdatePlant({ id }) {
                                value={plantData.type}
                                onChange={(e) => setPlantData({ ...plantData, type: e.target.value })}
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Tip</strong></label>
+                        <label htmlFor="floatingInput"><strong>{t("employeePage.type")}:</strong></label>
                     </div>
 
                     <div className="form-floating mb-3">
@@ -87,11 +91,11 @@ export default function UpdatePlant({ id }) {
                                value={plantData.species}
                                onChange={(e) => setPlantData({ ...plantData, species: e.target.value })}
                         ></input>
-                        <label htmlFor="floatingInput"><strong>Specie</strong></label>
+                        <label htmlFor="floatingInput"><strong>{t("employeePage.species")}:</strong></label>
                     </div>
 
                     <li className="list-group-item">
-                        <strong>Planta carnivora:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                        <strong>{t("employeePage.carnivorous")}:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="checkbox"
                                checked={plantData.carnivorous === "Da"}
                                onChange={(e) => setPlantData({ ...plantData, carnivorous: e.target.checked ? "Da" : "Nu" })}
@@ -99,7 +103,7 @@ export default function UpdatePlant({ id }) {
                     </li>
 
                     <li className="list-group-item">
-                        <strong>Zona gradina botanica:</strong> <br/>
+                        <strong>{t("employeePage.zone")}:</strong> <br/>
                         <label><input type="radio"
                                       name="zone"
                                       value="A"
@@ -134,10 +138,12 @@ export default function UpdatePlant({ id }) {
                             className="btn btn-success"
                             style={{width: 'fit-content', margin: "5% auto"}}
                             onClick={handleSubmit}
-                    >Actualizare</button>
+                    >{t("employeePage.updatePlBttn")}</button>
                 </ul>
             </div>
 
         </div>
+
+        </I18nextProvider>
     )
 }

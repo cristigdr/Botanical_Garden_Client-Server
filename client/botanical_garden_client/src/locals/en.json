@@ -22,7 +22,9 @@
     "filter": "Filter",
     "criteria": "Criteria",
     "loadImg": "Load image",
-    "addPlBttn": "Add"
+    "addPlBttn": "Add",
+    "updatePl": "Update Plant",
+    "updatePlBttn": "Update"
 
   }
 }

@@ -22,6 +22,8 @@
     "filter": "Filtru",
     "criteria": "Criteriu",
     "loadImg": "Încarcă o imagine",
-    "addPlBttn": "Adăugare"
+    "addPlBttn": "Adăugare",
+    "updatePl": "Actualizare Plantă",
+    "updatePlBttn": "Actualizare"
   }
 }
