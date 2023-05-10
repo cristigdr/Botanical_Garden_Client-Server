@@ -1,10 +1,8 @@
 import {useEffect, useState} from "react";
 import httpClient from "./httpClient";
-import {useParams} from "react-router-dom";
 
 
-export default function UpdateUser(){
-    const { id } = useParams();
+export default function UpdateUser({ id }){
 
     const [userData, setUserData] = useState({
         name: '',
@@ -39,10 +37,8 @@ export default function UpdateUser(){
     };
 
     return(
-        <div id ="adminPage">
-            <div className="text" style={{ width: '60%'}}>Actualizare utilizator:</div>
-
-            <div className="card" id="addUserCard" style={{ width: "18rem" }}>
+        
+            <div className="card" style={{ width: "18rem" }}>
 
                 <ul className="list-group list-group-flush">
 
@@ -119,6 +115,5 @@ export default function UpdateUser(){
                 </ul>
             </div>
 
-        </div>
     )
 }

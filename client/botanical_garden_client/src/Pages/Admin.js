@@ -1,8 +1,10 @@
 import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faPen, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
-import {Link} from "react-router-dom";
 import httpClient from "./httpClient";
+import AddUser from "./AddUser";
+import {Modal} from "bootstrap";
+import UpdateUser from "./UpdateUser";
 
 export default function Admin(){
 
@@ -10,6 +12,7 @@ export default function Admin(){
     const[users, setUsers] = useState([]);
     const [showSearchForm, setshowSearchForm] = useState(false);
     const [selectedRole, setSelectedRole] = useState("");
+    const [selectedUserId, setSelectedUserId] = useState(null);
 
 
 
@@ -67,8 +70,18 @@ export default function Admin(){
         }
     }, [selectedRole]);
 
+    const openModalAdd = () => {
+        const modalElement = document.getElementById("addUser");
+        const modal = new Modal(modalElement);
+        modal.show();
+    };
 
-
+    const openModalUpdate = (userId) => {
+        setSelectedUserId(userId);
+        const modalElement = document.getElementById("updateUser");
+        const modal = new Modal(modalElement);
+        modal.show();
+    };
     return(
         <div id ="adminPage">
 
@@ -99,9 +112,7 @@ export default function Admin(){
                         <thead>
 
                             <div style={{ display: "flex", alignItems: "center" }}>
-                                <Link to='/addUser' >
-                                    <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white" }} />
-                                </Link>
+                                    <FontAwesomeIcon icon={faPlus} size="2xl" style={{ color: "white", cursor: "pointer" }} onClick={openModalAdd}/>
                                 <span style={{ marginLeft: "10px", color: "white" }}>Adaugare Utilizator</span>
                             </div>
 
@@ -124,9 +135,7 @@ export default function Admin(){
                                     <td>{user.password}</td>
                                     <td>{user.role}</td>
                                     <td>
-                                        <Link to={`/updateUser/${user.id}`}>
-                                            <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
-                                        </Link>
+                                        <FontAwesomeIcon icon={faPen}  style={{color: "white",}} onClick={() => openModalUpdate(user.id)}/>
 
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
@@ -138,8 +147,43 @@ export default function Admin(){
                             ))}
 
                         </tbody>
-
                     </table>
+            </div>
+
+            <div className="modal fade" id="addUser" tabIndex="-1" aria-labelledby="addUserLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog" style={{width: "fit-content"}}>
+                    <div className="modal-content">
+                        <div className="modal-header" >
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Adauga util</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+
+                            <AddUser/>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div className="modal fade" id="updateUser" tabIndex="-1" aria-labelledby="updateUserLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog" style={{width: "fit-content"}}>
+                    <div className="modal-content">
+                        <div className="modal-header" >
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">Actualizeaza util</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+
+                            <UpdateUser id={selectedUserId} />
+
+                        </div>
+                    </div>
+                </div>
             </div>
 
         </div>

@@ -233,14 +233,6 @@ img {
   mix-blend-mode: screen;
 }
 
-#addUserCard {
-  top: 20%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 7%;
-  margin-bottom: 5%;
-
-}
 
 #statsPlantsPage {
   height: 100vh;
