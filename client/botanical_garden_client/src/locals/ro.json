@@ -24,6 +24,13 @@
     "loadImg": "Încarcă o imagine",
     "addPlBttn": "Adăugare",
     "updatePl": "Actualizare Plantă",
-    "updatePlBttn": "Actualizare"
+    "updatePlBttn": "Actualizare",
+    "zoneChart": "Plante în fiecare zonă:",
+    "carnivorousChart": "Număr plante carnivore:",
+    "yesLabel": "Da",
+    "noLabel": "Nu"
+
+
+
   }
 }

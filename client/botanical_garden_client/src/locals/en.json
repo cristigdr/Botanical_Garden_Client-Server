@@ -24,7 +24,10 @@
     "loadImg": "Load image",
     "addPlBttn": "Add",
     "updatePl": "Update Plant",
-    "updatePlBttn": "Update"
-
+    "updatePlBttn": "Update",
+    "zoneChart": "Plants in each zone:",
+    "carnivorousChart": "Number of carnivorous plants:",
+    "yesLabel": "Yes",
+    "noLabel": "No"
   }
 }

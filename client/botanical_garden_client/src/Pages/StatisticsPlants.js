@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import Chart from "chart.js/auto";
 import httpClient from "./httpClient";
+import i18n from "../i18n";
+import {I18nextProvider, useTranslation} from "react-i18next";
 
 export default function StatisticsPlants() {
     const chartContainerCarn = useRef(null);
@@ -9,6 +11,7 @@ export default function StatisticsPlants() {
     const chartInstanceZone = useRef(null);
     const [carnCount, setCarnCount] = useState([]);
     const [zoneCount, setZoneCount] = useState([]);
+    const { t } = useTranslation();
 
     useEffect(() => {
         async function fetchCarnCount() {
@@ -49,8 +52,10 @@ export default function StatisticsPlants() {
                 chartInstanceCarn.current.destroy();
             }
 
+            const nuLabel = chartContainerCarn.current.getAttribute("nolabel");
+            const daLabel = chartContainerCarn.current.getAttribute("yeslabel");
             const chartData = {
-                labels: ["Nu", "Da"],
+                labels: [nuLabel, daLabel],
                 datasets: [
                     {
                         data: carnCount.map((item) => item[1]),
@@ -92,14 +97,14 @@ export default function StatisticsPlants() {
             chartInstanceZone.current = new Chart(chartContainerZone.current, {
                 type: "pie",
                 data: chartData,
+                options: {
+                    title: {
+                        display: true,
+                        text: "gfgh",
+                    },
+                },
             });
         }
-
-        return () => {
-            if (chartInstanceCarn.current) {
-                chartInstanceCarn.current.destroy();
-            }
-        };
     }, [zoneCount]);
 
 
@@ -110,22 +115,24 @@ export default function StatisticsPlants() {
     };
 
     return (
-        <div id="statsPlantsPage">
-            <div id="charts">
-                <div>
-                    <h2>Plante Carnivore</h2>
-                    <div style={chartStyles}>
-                        <canvas ref={chartContainerCarn} />
+        <I18nextProvider i18n={i18n}>
+            <div id="statsPlantsPage">
+                <div id="charts">
+                    <div className="chartContainer">
+                        <h2>{t("employeePage.carnivorousChart")}</h2><br/>
+                        <div style={chartStyles}>
+                            <canvas ref={chartContainerCarn} nolabel={t("employeePage.noLabel")} yeslabel={t("employeePage.yesLabel")} />
+                        </div>
                     </div>
-                </div>
-
-                <div>
-                    <h2>Plante in zone</h2>
-                    <div style={chartStyles}>
-                        <canvas ref={chartContainerZone} />
+                    <div className="chartContainer">
+                        <h2>{t("employeePage.zoneChart")}</h2> <br/>
+                        <div style={chartStyles}>
+                            <canvas ref={chartContainerZone} />
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
+
+        </I18nextProvider>
     );
 }
