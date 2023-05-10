@@ -269,5 +269,36 @@ img {
   width: fit-content;
 }
 
+#message-box {
+  position: fixed;
+  top: 50%;
+  left: 16.5%;
+  transform: translate(-50%, -50%);
+  z-index: 9999;
+  width: 100%;
 
+}
+
+
+.popup-message {
+  display: flex;
+  flex-direction: column;
+  position: fixed;
+  align-items: center;
+  bottom: 20px;
+  right: 20px;
+  padding: 10px;
+  border-radius: 4px;
+  background-color: #ffffff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  transition: opacity 0.5s, transform 0.5s;
+  opacity: 0;
+  transform: translateY(50px);
+  width: 30%;
+}
+
+.popup-message.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 
