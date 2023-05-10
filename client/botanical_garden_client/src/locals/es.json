@@ -28,7 +28,8 @@
     "zoneChart": "Plantas en cada zona:",
     "carnivorousChart": "Número de plantas carnívoras:",
     "yesLabel": "Sí",
-    "noLabel": "No"
+    "noLabel": "No",
+    "zoneGarden": "Zona del Jardín Botánico"
   },
 
   "adminPage": {

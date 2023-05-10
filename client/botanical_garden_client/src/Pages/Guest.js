@@ -4,9 +4,13 @@ import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 import httpClient from "./httpClient";
+import {I18nextProvider, useTranslation} from "react-i18next";
+import i18n from "../i18n";
+
 
 export default function Guest(){
 
+    const { t } = useTranslation();
     const [buttonText, setButtonText] = useState('Criteriu');
     const[plants, setPlants] = useState([]);
     const [filterValue, setFilterValue] = useState('');
@@ -53,10 +57,17 @@ export default function Guest(){
         handleFilterPlants(filterCriteria, filterValue);
     }
 
-    return(
-        <div id="guestPage">
 
-            <div className="text" onMouseEnter={handleMouseEnter}>Bun venit!</div>
+    function handleLanguageChange(language) {
+        i18n.changeLanguage(language);
+    }
+
+    return(
+        <I18nextProvider i18n={i18n}>
+
+            <div id="guestPage">
+
+            <div className="text" onMouseEnter={handleMouseEnter}>{t("employeePage.title")}</div>
 
             <div id="searchForm" style={{ display: showSearchForm ? 'block' : 'none' }} onMouseLeave={handleMouseLeave}>
 
@@ -65,11 +76,11 @@ export default function Guest(){
                         {buttonText}
                     </button>
                     <ul className="dropdown-menu">
-                        <li><label className="dropdown-item" data-criteria="name" onClick={handleItemClick} >Denumire</label></li>
-                        <li><label className="dropdown-item"  data-criteria="type" onClick={handleItemClick} >Tip</label></li>
-                        <li><label className="dropdown-item"  data-criteria="species" onClick={handleItemClick} >Specie</label></li>
-                        <li><label className="dropdown-item"  data-criteria="carnivorous" onClick={handleItemClick} >Plantă carnivoră</label></li>
-                        <li><label className="dropdown-item" data-criteria="zone" onClick={handleItemClick} >Zonă</label></li>
+                        <li><label className="dropdown-item" data-criteria="name" onClick={handleItemClick} >{t("employeePage.name")}</label></li>
+                        <li><label className="dropdown-item"  data-criteria="type" onClick={handleItemClick} >{t("employeePage.type")}</label></li>
+                        <li><label className="dropdown-item"  data-criteria="species" onClick={handleItemClick} >{t("employeePage.species")}</label></li>
+                        <li><label className="dropdown-item"  data-criteria="carnivorous" onClick={handleItemClick} >{t("employeePage.carnivorous")}</label></li>
+                        <li><label className="dropdown-item" data-criteria="zone" onClick={handleItemClick} >{t("employeePage.zone")}</label></li>
                     </ul>
                 </div>
 
@@ -82,9 +93,18 @@ export default function Guest(){
                                value={filterValue}
                                onChange={(event) => setFilterValue(event.target.value)}
                         ></input>
-                        <label htmlFor="floatingInput">Filtru</label>
+                        <label htmlFor="floatingInput">{t("employeePage.filter")}</label>
                     </div>
                     <FontAwesomeIcon icon={faMagnifyingGlass} size="2xl" style={{color: "#307853",}} onClick={handleFilterClick}/>
+                </div>
+
+                <div id="flagButtons" >
+
+                    <span className="fi fi-ro" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('ro')}></span>
+                    <span className="fi fi-us" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('en')}></span>
+                    <span className="fi fi-es" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('es')}></span>
+                    <span className="fi fi-fr" style={{ fontSize: '2rem', cursor: "pointer" }} onClick={() => handleLanguageChange('fr')}></span>
+
                 </div>
 
             </div>
@@ -102,19 +122,21 @@ export default function Guest(){
                                         src={`data:image/jpeg;base64, ${plant.image}`}
                                     />
                                 )}
-                                <h5 className="card-title" style={{marginTop: "6%", textAlign: "center"}}><b>Denumire:</b><br/>{plant.name}</h5>
+                                <h5 className="card-title" style={{marginTop: "6%", textAlign: "center"}}><b>{t("employeePage.name")}:</b><br/>{plant.name}</h5>
 
                             </div>
                             <ul className="list-group list-group-flush">
-                                <li className="list-group-item"><b>Tip:</b> &nbsp; {plant.type}</li>
-                                <li className="list-group-item"><b>Specie:</b> &nbsp; {plant.species}</li>
-                                <li className="list-group-item"><b>Planta carnivora:</b> &nbsp; {plant.carnivorous}</li>
-                                <li className="list-group-item"><b>Zona gradina botanica:</b> &nbsp; {plant.zone}</li>
+                                <li className="list-group-item"><b>{t("employeePage.type")}:</b> &nbsp; {plant.type}</li>
+                                <li className="list-group-item"><b>{t("employeePage.species")}:</b> &nbsp; {plant.species}</li>
+                                <li className="list-group-item"><b>{t("employeePage.carnivorous")}:</b> &nbsp; {plant.carnivorous}</li>
+                                <li className="list-group-item"><b>{t("employeePage.zoneGarden")}:</b> &nbsp; {plant.zone}</li>
                             </ul>
                     </div>
                 ))}
             </div>
 
         </div>
+
+        </I18nextProvider>
     )
 }

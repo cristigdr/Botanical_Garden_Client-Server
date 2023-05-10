@@ -28,7 +28,8 @@
     "zoneChart": "Plants in each zone:",
     "carnivorousChart": "Number of carnivorous plants:",
     "yesLabel": "Yes",
-    "noLabel": "No"
+    "noLabel": "No",
+    "zoneGarden": "Botanical Garden Zone"
   },
 
   "adminPage": {

@@ -28,7 +28,8 @@
     "zoneChart": "Plante în fiecare zonă:",
     "carnivorousChart": "Număr plante carnivore:",
     "yesLabel": "Da",
-    "noLabel": "Nu"
+    "noLabel": "Nu",
+    "zoneGarden":"Zonă grădină botanică"
   },
 
   "adminPage": {
