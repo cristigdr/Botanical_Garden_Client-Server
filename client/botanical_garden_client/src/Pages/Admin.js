@@ -76,6 +76,7 @@ export default function Admin(){
 
     function handleLanguageChange(language) {
         i18n.changeLanguage(language);
+        localStorage.setItem('language', language);
     }
 
 
@@ -91,6 +92,14 @@ export default function Admin(){
         const modal = new Modal(modalElement);
         modal.show();
     };
+
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage) {
+            i18n.changeLanguage(storedLanguage);
+        }
+    }, []);
+
     return(
         <I18nextProvider i18n={i18n}>
 

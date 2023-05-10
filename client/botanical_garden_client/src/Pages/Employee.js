@@ -148,6 +148,7 @@ export default function Employee(){
 
     function handleLanguageChange(language) {
         i18n.changeLanguage(language);
+        localStorage.setItem('language', language);
     }
 
 
@@ -164,6 +165,12 @@ export default function Employee(){
         modal.show();
     };
 
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage) {
+            i18n.changeLanguage(storedLanguage);
+        }
+    }, []);
 
     return(
         <I18nextProvider i18n={i18n}>

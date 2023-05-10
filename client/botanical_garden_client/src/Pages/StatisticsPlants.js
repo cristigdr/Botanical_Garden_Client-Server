@@ -114,6 +114,13 @@ export default function StatisticsPlants() {
         float: "left",
     };
 
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage) {
+            i18n.changeLanguage(storedLanguage);
+        }
+    }, []);
+
     return (
         <I18nextProvider i18n={i18n}>
             <div id="statsPlantsPage">

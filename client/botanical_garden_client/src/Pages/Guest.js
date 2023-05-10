@@ -60,7 +60,15 @@ export default function Guest(){
 
     function handleLanguageChange(language) {
         i18n.changeLanguage(language);
+        localStorage.setItem('language', language);
     }
+
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage) {
+            i18n.changeLanguage(storedLanguage);
+        }
+    }, []);
 
     return(
         <I18nextProvider i18n={i18n}>

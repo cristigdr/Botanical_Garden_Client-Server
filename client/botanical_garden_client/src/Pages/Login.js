@@ -1,5 +1,5 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { useState } from 'react';
+import {useEffect, useState} from 'react';
 import {Link} from "react-router-dom";
 import {I18nextProvider, useTranslation} from "react-i18next";
 import i18n from '../i18n';
@@ -22,7 +22,15 @@ export default function Login(){
 
     function handleLanguageChange(language) {
         i18n.changeLanguage(language);
+        localStorage.setItem('language', language);
     }
+
+    useEffect(() => {
+        const storedLanguage = localStorage.getItem('language');
+        if (storedLanguage) {
+            i18n.changeLanguage(storedLanguage);
+        }
+    }, []);
 
 
     return (
