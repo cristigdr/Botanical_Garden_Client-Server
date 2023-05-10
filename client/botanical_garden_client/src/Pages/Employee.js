@@ -19,6 +19,8 @@ import AddPlant from "./AddPlant";
 import { Modal } from 'bootstrap';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'bootstrap/dist/js/bootstrap.bundle.min.js';
+import UpdatePlant from "./UpdatePlant";
+
 
 export default function Employee(){
     const { t } = useTranslation();
@@ -26,6 +28,8 @@ export default function Employee(){
     const[plants, setPlants] = useState([]);
     const [filterValue, setFilterValue] = useState('');
     const [filterCriteria, setFilterCriteria] = useState('');
+    const [selectedPlantId, setSelectedPlantId] = useState(null);
+
 
     function handleItemClick(event) {
         setFilterCriteria(event.target.getAttribute('data-criteria'));
@@ -94,7 +98,6 @@ export default function Employee(){
         link.click(); // simulate a click on the link to trigger the download
     };
 
-
     //download data in xml format
     const downloadXmlData = () => {
         const filteredData = plants.map(({ image, ...rest }) => rest);
@@ -148,13 +151,18 @@ export default function Employee(){
     }
 
 
-    const openModal = () => {
+    const openModalAdd = () => {
         const modalElement = document.getElementById("addPlant");
         const modal = new Modal(modalElement);
         modal.show();
     };
 
-
+    const openModalUpdate = (plantId) => {
+        setSelectedPlantId(plantId);
+        const modalElement = document.getElementById("updatePlant");
+        const modal = new Modal(modalElement);
+        modal.show();
+    };
 
 
     return(
@@ -209,7 +217,7 @@ export default function Employee(){
                     <div style={{ display: "flex", alignItems: "center", marginBottom: "3%"}}>
 
                         <div style={{ display: "flex", alignItems: "center" }}>
-                                <FontAwesomeIcon id="modal-icon" icon={faPlus} size="2xl" style={{ color: "white", cursor:"pointer" }} onClick={openModal}/>
+                                <FontAwesomeIcon id="modal-icon" icon={faPlus} size="2xl" style={{ color: "white", cursor:"pointer" }} onClick={openModalAdd}/>
                             <span style={{ marginLeft: "10px", color: "white" }}>{t("employeePage.addPl")}</span>
                         </div>
 
@@ -301,9 +309,7 @@ export default function Employee(){
                                         )}
                                     </td>
                                     <td>
-                                        <Link to={`/updatePlant/${plant.id}`} >
-                                            <FontAwesomeIcon icon={faPen}  style={{color: "white",}}/>
-                                        </Link>
+                                        <FontAwesomeIcon icon={faPen}  style={{color: "white",}} onClick={() => openModalUpdate(plant.id)}/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <FontAwesomeIcon icon={faTrash}
                                                          onClick={() => handeDeletePlant(plant.id)}
@@ -314,8 +320,6 @@ export default function Employee(){
                         </tbody>
                     </table>
                 </div>
-
-
 
                 <div className="modal fade" id="addPlant" tabIndex="-1" aria-labelledby="addPlantLabel"
                      aria-hidden="true">
@@ -329,6 +333,24 @@ export default function Employee(){
                             <div className="modal-body">
 
                                 <AddPlant/>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="modal fade" id="updatePlant" tabIndex="-1" aria-labelledby="updatePlantLabel"
+                     aria-hidden="true">
+                    <div className="modal-dialog" style={{width: "fit-content"}}>
+                        <div className="modal-content">
+                            <div className="modal-header" >
+                                <h1 className="modal-title fs-5" id="exampleModalLabel">Actualizare Planta</h1>
+                                <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                            </div>
+                            <div className="modal-body">
+
+                                <UpdatePlant id={selectedPlantId} />
 
                             </div>
                         </div>

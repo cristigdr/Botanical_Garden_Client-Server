@@ -1,14 +1,11 @@
-import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPlus} from "@fortawesome/free-solid-svg-icons";
 import {useEffect, useState} from "react";
-import {useParams} from "react-router-dom";
 import httpClient from "./httpClient";
 
-export default function UpdatePlant(){
+export default function UpdatePlant({ id }) {
 
-    const { id } = useParams();
 
     const [plantData, setPlantData] = useState({
+        id: "",
         name: "",
         type: "",
         species: "",
@@ -42,8 +39,7 @@ export default function UpdatePlant(){
     };
 
     return(
-        <div id ="employeePage">
-            <div className="text" style={{ width: '50%'}}>Actualizare planta:</div>
+        <div id ="i">
 
             <div className="card" id="updatePlantCard" style={{ width: "18rem" }}>
 
@@ -141,8 +137,6 @@ export default function UpdatePlant(){
                     >Actualizare</button>
                 </ul>
             </div>
-
-
 
         </div>
     )
