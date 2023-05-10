@@ -13,9 +13,10 @@ export default function AddPlant(){
         name: "",
         type: "",
         species: "",
-        carnivorous: "Nu",
+        carnivorous: "—",
         zone: "",
     });
+
 
     const [imageFile, setImageFile] = useState(null);
 
@@ -106,7 +107,7 @@ export default function AddPlant(){
                         <li className="list-group-item">
                             <strong>{t("employeePage.carnivorous")}:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                             <input type="checkbox"
-                                   onChange={(e) => setAddPlantData({ ...addPlantData, carnivorous: e.target.checked ? 'Da' : 'Nu' })}
+                                   onChange={(e) => setAddPlantData({ ...addPlantData, carnivorous: e.target.checked ? '✓' : '—' })}
                             />
                         </li>
 

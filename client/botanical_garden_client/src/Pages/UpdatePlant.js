@@ -11,7 +11,7 @@ export default function UpdatePlant({ id }) {
         name: "",
         type: "",
         species: "",
-        carnivorous: "Nu",
+        carnivorous: "—",
         zone: "",
     });
 
@@ -97,8 +97,8 @@ export default function UpdatePlant({ id }) {
                     <li className="list-group-item">
                         <strong>{t("employeePage.carnivorous")}:</strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                         <input type="checkbox"
-                               checked={plantData.carnivorous === "Da"}
-                               onChange={(e) => setPlantData({ ...plantData, carnivorous: e.target.checked ? "Da" : "Nu" })}
+                               checked={plantData.carnivorous === "✓"}
+                               onChange={(e) => setPlantData({ ...plantData, carnivorous: e.target.checked ? '✓' : '—' })}
                         />
                     </li>
 

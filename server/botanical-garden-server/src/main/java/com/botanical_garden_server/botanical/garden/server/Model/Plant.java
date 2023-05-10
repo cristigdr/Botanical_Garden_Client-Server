@@ -18,7 +18,7 @@ public class Plant {
     private String type;
     @Column(name = "specie", nullable = false, length = 100)
     private String species;
-    @Column(name = "planta_carnivora", nullable = false, columnDefinition = "CHAR(3)")
+    @Column(name = "planta_carnivora", nullable = false, columnDefinition = "CHAR(4)")
     private String carnivorous;
     @Column(name = "zona_gradina_botanica", nullable = false, columnDefinition = "CHAR(1)")
     @Check(constraints = "zona_gradina_botanica IN ('A', 'B', 'C', 'D')")

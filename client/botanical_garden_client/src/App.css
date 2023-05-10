@@ -205,14 +205,6 @@ img {
   color: #307853;
 }
 
-#updatePlantCard {
-  top: 45%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  margin-top: 7%;
-  margin-bottom: 5%;
-
-}
 
 #employeePage .card-body {
   display: flex;
