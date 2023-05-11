@@ -46,6 +46,8 @@
     "operations": "Operație",
     "addUsBttn": "Adăugare",
     "updateUsBttn": "Actualizare",
-    "updateUser": "Actualizare Utilizator"
+    "updateUser": "Actualizare Utilizator",
+    "successMess": "Success!",
+    "errorMessAddUs": "Utilizatorul nu a putut fi adăugat!"
   }
 }

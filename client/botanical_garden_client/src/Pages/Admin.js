@@ -36,17 +36,26 @@ export default function Admin(){
     }
 
 
-    useEffect( () =>{
-        async function fetchAllUsers(){
-            try{
+    useEffect(() => {
+        async function fetchAllUsers() {
+            try {
                 const response = await httpClient.get('http://localhost:8080/getUsers');
                 setUsers(response.data);
-            }catch (error){
+            } catch (error) {
                 console.error(error);
             }
         }
-        fetchAllUsers();
+
+        const interval = setInterval(() => {
+            fetchAllUsers();
+        }, 2000);
+
+        // Cleanup the interval on component unmount
+        return () => {
+            clearInterval(interval);
+        };
     }, []);
+
 
 
     const handleDeleteUser = async (id) => {
@@ -99,6 +108,7 @@ export default function Admin(){
             i18n.changeLanguage(storedLanguage);
         }
     }, []);
+
 
     return(
         <I18nextProvider i18n={i18n}>
@@ -179,23 +189,12 @@ export default function Admin(){
                         </table>
                 </div>
 
-                <div className="modal fade" id="addUser" tabIndex="-1" aria-labelledby="addUserLabel"
-                     aria-hidden="true">
-                    <div className="modal-dialog" style={{width: "fit-content"}}>
-                        <div className="modal-content">
-                            <div className="modal-header" >
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">{t("adminPage.addUser")}</h1>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
 
-                                <AddUser/>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
+                                    <AddUser  />
+
+
 
                 <div className="modal fade" id="updateUser" tabIndex="-1" aria-labelledby="updateUserLabel"
                      aria-hidden="true">

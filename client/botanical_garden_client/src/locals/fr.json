@@ -46,6 +46,8 @@
     "operations": "Opérations",
     "addUsBttn": "Ajouter",
     "updateUsBttn": "Actualizar",
-    "updateUser": "Mettre à jour l'utilisateur"
+    "updateUser": "Mettre à jour l'utilisateur",
+    "successMess": "Succès !",
+    "errorMessAddUs": "L'utilisateur n'a pas pu être ajouté !"
   }
 }

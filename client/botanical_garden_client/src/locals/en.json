@@ -46,6 +46,8 @@
     "operations": "Operations",
     "addUsBttn": "Add",
     "updateUsBttn": "Update",
-    "updateUser": "Update User"
+    "updateUser": "Update User",
+    "successMess": "Success!",
+    "errorMessAddUs": "User could not be added!"
   }
 }

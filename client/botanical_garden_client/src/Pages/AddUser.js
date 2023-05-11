@@ -22,13 +22,14 @@ export default function AddUser(){
             console.log(response.data);
 
             if (response.status === 200) {
-                setPopUpMessage({ message: "Success!", isSuccess: true });
+                setPopUpMessage({ message: t("adminPage.successMess"), isSuccess: true });
+                closeModalOnResponse(response);
             } else {
-                setPopUpMessage({ message: "An error occurred while submitting the form.", isSuccess: false });
+                setPopUpMessage({ message: t("adminPage.errorMessAddUs"), isSuccess: false });
             }
         } catch (error) {
             console.error(error);
-            setPopUpMessage({ message: "An error occurred while submitting the form.", isSuccess: false });
+            setPopUpMessage({ message: t("adminPage.errorMessAddUs"), isSuccess: false });
         }
     };
 
@@ -45,6 +46,7 @@ export default function AddUser(){
             return () => clearTimeout(timeout);
         }, []);
 
+
         return (
             <div
                 className={`popup-message ${visible ? 'visible' : ''}`}
@@ -56,6 +58,16 @@ export default function AddUser(){
         );
     };
 
+    const closeModalOnResponse = (response) => {
+        if (response.status === 200) {
+            const modal = document.getElementById('addUser');
+            modal.classList.remove('show'); // Remove the 'show' class to hide the modal
+            modal.setAttribute('aria-hidden', 'true'); // Set the 'aria-hidden' attribute to 'true'
+            modal.style.display = 'none'; // Hide the modal by setting the display to 'none'
+        }
+    };
+
+
     return(
         <I18nextProvider i18n={i18n}>
 
@@ -66,6 +78,18 @@ export default function AddUser(){
                     <PopUpMessage message={popUpMessage.message} isSuccess={popUpMessage.isSuccess} />
             )}
             </div>
+
+            <div className="modal fade" id="addUser" tabIndex="-1" aria-labelledby="addUserLabel"
+                 aria-hidden="true">
+                <div className="modal-dialog" style={{width: "fit-content"}}>
+                    <div className="modal-content">
+                        <div className="modal-header" >
+                            <h1 className="modal-title fs-5" id="exampleModalLabel">{t("adminPage.addUser")}</h1>
+                            <button type="button" className="btn-close" data-bs-dismiss="modal"
+                                    aria-label="Close"></button>
+                        </div>
+                        <div className="modal-body">
+
             <div className="card" id="addUserCard" style={{ width: "18rem" }}>
                 <ul className="list-group list-group-flush">
 
@@ -121,12 +145,17 @@ export default function AddUser(){
                             className="btn btn-success"
                             style={{width: 'fit-content', margin: "5% auto"}}
                             onClick={handleSubmit}
-                    >{t("adminPage.addUsBttn")}</button>
+                    >{t("adminPage.addUsBttn")}
+                    </button>
 
                 </ul>
 
+            </div>
 
+                        </div>
 
+                    </div>
+                </div>
             </div>
         </I18nextProvider>
     )
