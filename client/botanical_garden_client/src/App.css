@@ -280,25 +280,60 @@ img {
 }
 
 
-.popup-message {
+
+#message {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  width: 30%;
   display: flex;
   flex-direction: column;
-  position: fixed;
   align-items: center;
-  bottom: 20px;
-  right: 20px;
-  padding: 10px;
-  border-radius: 4px;
-  background-color: #ffffff;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  transition: opacity 0.5s, transform 0.5s;
-  opacity: 0;
-  transform: translateY(50px);
-  width: 30%;
+  justify-content: center;
+  opacity: 1;
+  animation: slideFade 3s ease forwards;
 }
 
-.popup-message.visible {
-  opacity: 1;
-  transform: translateY(0);
+@keyframes slideFade {
+  0% {
+    top: 50%;
+    opacity: 1;
+  }
+  100% {
+    top: 150%;
+    opacity: 0;
+  }
 }
+
+#warningDelete {
+  display: flex;
+  flex-direction: column;
+  width: fit-content;
+  justify-content: center;
+  text-align: center;
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: white;
+  padding: 1%;
+  border-radius: 10px;
+  opacity: 0.98;
+}
+
+#warningBttns{
+  display: flex;
+  flex-direction: row;
+  gap: 5%;
+  justify-content: center;
+}
+
+
+
 

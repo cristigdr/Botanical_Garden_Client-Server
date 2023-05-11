@@ -48,6 +48,10 @@
     "updateUsBttn": "Actualizare",
     "updateUser": "Actualizare Utilizator",
     "successMess": "Success!",
-    "errorMessAddUs": "Utilizatorul nu a putut fi adăugat!"
+    "errorMessAddUs": "Utilizatorul nu a putut fi adăugat!",
+    "updateErrorUs": "Utilizatorul nu a putut fi actualizat!",
+    "deleteBttn": "Șterge!",
+    "deleteQuestion": "Doriți să ștergeți utilizatorul cu id-ul",
+    "quitDelete": "Renunță!"
   }
 }

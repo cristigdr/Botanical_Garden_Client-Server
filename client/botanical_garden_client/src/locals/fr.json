@@ -48,6 +48,10 @@
     "updateUsBttn": "Actualizar",
     "updateUser": "Mettre à jour l'utilisateur",
     "successMess": "Succès !",
-    "errorMessAddUs": "L'utilisateur n'a pas pu être ajouté !"
+    "errorMessAddUs": "L'utilisateur n'a pas pu être ajouté !",
+    "updateErrorUs": "Impossible de mettre à jour l'utilisateur !",
+    "deleteBttn": "Supprimer !",
+    "deleteQuestion": "Voulez-vous supprimer l'utilisateur avec l'identifiant",
+    "quitDelete": "Annuler !"
   }
 }

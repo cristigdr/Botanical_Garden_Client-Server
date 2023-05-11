@@ -48,6 +48,10 @@
     "updateUsBttn": "Actualizar",
     "updateUser": "Actualizar Usuario",
     "successMess": "¡Éxito!",
-    "errorMessAddUs": "¡No se pudo agregar al usuario!"
+    "errorMessAddUs": "¡No se pudo agregar al usuario!",
+    "updateErrorUs": "¡No se pudo actualizar el usuario!",
+    "deleteBttn": "¡Eliminar!",
+    "deleteQuestion": "¿Desea eliminar el usuario con id",
+    "quitDelete": "Cancelar!"
   }
 }

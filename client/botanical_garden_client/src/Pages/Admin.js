@@ -1,6 +1,6 @@
 import {useEffect, useState} from "react";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faPen, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
+import {faCircleExclamation, faPen, faPlus, faTrash} from "@fortawesome/free-solid-svg-icons";
 import httpClient from "./httpClient";
 import AddUser from "./AddUser";
 import {Modal} from "bootstrap";
@@ -16,15 +16,13 @@ export default function Admin(){
     const [showSearchForm, setshowSearchForm] = useState(false);
     const [selectedRole, setSelectedRole] = useState("");
     const [selectedUserId, setSelectedUserId] = useState(null);
-
+    const[showWarningDelete, setShowWarningDelete] = useState(false);
 
 
     function handleItemClick(event) {
         setButtonText(event.target.innerText);
         setSelectedRole(event.target.innerText);
     }
-
-
 
     const handleMouseEnter = () => {
         setshowSearchForm(true);
@@ -50,7 +48,7 @@ export default function Admin(){
             fetchAllUsers();
         }, 2000);
 
-        // Cleanup the interval on component unmount
+         //Cleanup the interval on component unmount
         return () => {
             clearInterval(interval);
         };
@@ -109,7 +107,18 @@ export default function Admin(){
         }
     }, []);
 
+    const handleDeleteClick = (userId) => {
+        setShowWarningDelete(true);
+        setDeleteId(userId);
+    };
 
+    const closeDeleteWarning = () => {
+        setShowWarningDelete(false);
+    }
+
+    const[deleteId, setDeleteId] = useState(null);
+
+    console.log("id= "+deleteId);
     return(
         <I18nextProvider i18n={i18n}>
 
@@ -179,7 +188,7 @@ export default function Admin(){
                                             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                                             <FontAwesomeIcon icon={faTrash}
-                                                             onClick={() => handleDeleteUser(user.id)}
+                                                             onClick={() => handleDeleteClick(user.id)}
                                             />
                                         </td>
                                     </tr>
@@ -189,31 +198,26 @@ export default function Admin(){
                         </table>
                 </div>
 
+                <AddUser />
 
+                <UpdateUser id={selectedUserId} />
 
+                {showWarningDelete ? (
+                    <div id="warningDelete">
+                        <FontAwesomeIcon icon={faCircleExclamation} style={{color: "#ff0000"}} size="2xl" />
+                        <p style={{marginTop: "5%"}}>{t("adminPage.deleteQuestion")} {deleteId} ?</p>
 
-                                    <AddUser  />
+                        <div id="warningBttns">
+                            <button type="button" class="btn btn-secondary" onClick={() => {
+                                handleDeleteUser(deleteId);
+                                closeDeleteWarning();
+                            }}>{t("adminPage.deleteBttn")}</button>
 
-
-
-                <div className="modal fade" id="updateUser" tabIndex="-1" aria-labelledby="updateUserLabel"
-                     aria-hidden="true">
-                    <div className="modal-dialog" style={{width: "fit-content"}}>
-                        <div className="modal-content">
-                            <div className="modal-header" >
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">{t("adminPage.updateUser")}</h1>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
-
-                                <UpdateUser id={selectedUserId} />
-
-                            </div>
+                            <button type="button" className="btn btn-success" onClick={closeDeleteWarning}>{t("adminPage.quitDelete")}</button>
                         </div>
-                    </div>
-                </div>
 
+                    </div>
+                ) : null}
             </div>
 
         </I18nextProvider>
