@@ -5,7 +5,7 @@ import i18n from "../i18n";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck, faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
 
-export default function AddUser(){
+export default function AddUser({ onUserAdded }){
 
     const { t } = useTranslation();
     const[addUserData, setAddUserData] = useState({
@@ -27,6 +27,7 @@ export default function AddUser(){
                 setAddUserData({ user: "", password: "", role: "" });
                 setSuccess(true);
                 setShowMessageBox(true);
+                onUserAdded();
             } else {
                 setSuccess(false);
                 setShowMessageBox(true);

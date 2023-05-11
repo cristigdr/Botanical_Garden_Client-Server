@@ -17,8 +17,8 @@ export default function Admin(){
     const [selectedRole, setSelectedRole] = useState("");
     const [selectedUserId, setSelectedUserId] = useState(null);
     const[showWarningDelete, setShowWarningDelete] = useState(false);
-
-
+    const[deleteId, setDeleteId] = useState(null);
+    const[userChanges, setUserChanges] = useState(false);
     function handleItemClick(event) {
         setButtonText(event.target.innerText);
         setSelectedRole(event.target.innerText);
@@ -36,6 +36,7 @@ export default function Admin(){
 
     useEffect(() => {
         async function fetchAllUsers() {
+            setUserChanges(false);
             try {
                 const response = await httpClient.get('http://localhost:8080/getUsers');
                 setUsers(response.data);
@@ -43,16 +44,14 @@ export default function Admin(){
                 console.error(error);
             }
         }
+         fetchAllUsers();
+    }, [userChanges]);
 
-        const interval = setInterval(() => {
-            fetchAllUsers();
-        }, 2000);
+    const handleUserAddedOrUpdated = () => {
+        setUserChanges(true);
+    };
 
-         //Cleanup the interval on component unmount
-        return () => {
-            clearInterval(interval);
-        };
-    }, []);
+
 
 
 
@@ -116,9 +115,8 @@ export default function Admin(){
         setShowWarningDelete(false);
     }
 
-    const[deleteId, setDeleteId] = useState(null);
 
-    console.log("id= "+deleteId);
+
     return(
         <I18nextProvider i18n={i18n}>
 
@@ -198,9 +196,8 @@ export default function Admin(){
                         </table>
                 </div>
 
-                <AddUser />
-
-                <UpdateUser id={selectedUserId} />
+                <AddUser onUserAdded={handleUserAddedOrUpdated} />
+                <UpdateUser id={selectedUserId} onUserUpdated={handleUserAddedOrUpdated} />
 
                 {showWarningDelete ? (
                     <div id="warningDelete">

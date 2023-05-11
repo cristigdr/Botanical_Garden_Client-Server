@@ -5,7 +5,7 @@ import i18n from "../i18n";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck, faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
 
-export default function UpdateUser({ id }){
+export default function UpdateUser({  onUserUpdated, id }){
 
     const { t } = useTranslation();
     const [userData, setUserData] = useState({
@@ -22,6 +22,9 @@ export default function UpdateUser({ id }){
             try {
                 const response = await httpClient.get(`http://localhost:8080/getUser/${id}`);
                 setUserData(response.data);
+
+                if (response.status === 200) {
+                }
             } catch (error) {
                 console.error(error);
 
@@ -43,7 +46,7 @@ export default function UpdateUser({ id }){
             if (response.status === 200) {
                 setSuccess(true);
                 setShowMessageBox(true);
-
+                onUserUpdated();
 
             } else {
                 setSuccess(false);
