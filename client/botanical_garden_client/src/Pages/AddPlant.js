@@ -102,13 +102,13 @@ export default function AddPlant({ onPlantAdded }){
                                 <div id="message">
                                     {success ? (
                                         <>
-                                            <p>{t("adminPage.successMess")}</p>
+                                            <p>{t("employeePage.successMess")}</p>
                                             <FontAwesomeIcon icon={faCircleCheck} style={{color: "#10d14a"}} size="2xl" />
 
                                         </>
                                     ) : (
                                         <>
-                                            <p>{t("adminPage.errorMessAddUs")}</p>
+                                            <p>{t("employeePage.errorMessAddPl")}</p>
                                             <FontAwesomeIcon icon={faCircleExclamation} style={{color: "#ff0000"}} size="2xl" />
 
                                         </>

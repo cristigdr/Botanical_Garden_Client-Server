@@ -29,7 +29,13 @@
     "carnivorousChart": "Nombre de plantes carnivores:",
     "yesLabel": "Oui",
     "noLabel": "Non",
-    "zoneGarden": "Zone du Jardin Botanique"
+    "zoneGarden": "Zone du Jardin Botanique",
+    "successMess": "Succès !",
+    "errorMessAddPl": "La plante n'a pas pu être ajoutée !",
+    "updateErrorPl": "La plante n'a pas pu être mise à jour !",
+    "deleteBttn": "Supprimer !",
+    "deleteQuestion": "Voulez-vous supprimer la plante avec l'identifiant",
+    "quitDelete": "Annuler !"
   },
 
   "adminPage": {

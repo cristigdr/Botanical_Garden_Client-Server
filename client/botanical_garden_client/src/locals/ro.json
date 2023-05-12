@@ -29,7 +29,13 @@
     "carnivorousChart": "Număr plante carnivore:",
     "yesLabel": "Da",
     "noLabel": "Nu",
-    "zoneGarden":"Zonă grădină botanică"
+    "zoneGarden":"Zonă grădină botanică",
+    "successMess": "Succes!",
+    "errorMessAddPl": "Planta nu a putut fi adăugată!",
+    "updateErrorPl": "Planta nu a putut fi actualizată!",
+    "deleteBttn": "Șterge!",
+    "deleteQuestion": "Doriți să ștergeți planta cu id-ul",
+    "quitDelete": "Renunță!"
   },
 
   "adminPage": {
@@ -47,7 +53,7 @@
     "addUsBttn": "Adăugare",
     "updateUsBttn": "Actualizare",
     "updateUser": "Actualizare Utilizator",
-    "successMess": "Success!",
+    "successMess": "Succes!",
     "errorMessAddUs": "Utilizatorul nu a putut fi adăugat!",
     "updateErrorUs": "Utilizatorul nu a putut fi actualizat!",
     "deleteBttn": "Șterge!",

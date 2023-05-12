@@ -29,7 +29,13 @@
     "carnivorousChart": "Número de plantas carnívoras:",
     "yesLabel": "Sí",
     "noLabel": "No",
-    "zoneGarden": "Zona del Jardín Botánico"
+    "zoneGarden": "Zona del Jardín Botánico",
+    "successMess": "¡Éxito!",
+    "errorMessAddPl": "¡No se pudo agregar la planta!",
+    "updateErrorPl": "¡No se pudo actualizar la planta!",
+    "deleteBttn": "¡Eliminar!",
+    "deleteQuestion": "¿Desea eliminar la planta con id",
+    "quitDelete": "Cancelar!"
   },
 
   "adminPage": {

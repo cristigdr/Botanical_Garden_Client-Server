@@ -354,15 +354,15 @@ export default function Employee(){
                 {showWarningDelete ? (
                     <div id="warningDelete">
                         <FontAwesomeIcon icon={faCircleExclamation} style={{color: "#ff0000"}} size="2xl" />
-                        <p style={{marginTop: "5%"}}>{t("adminPage.deleteQuestion")} {deleteId} ?</p>
+                        <p style={{marginTop: "5%"}}>{t("employeePage.deleteQuestion")} {deleteId} ?</p>
 
                         <div id="warningBttns">
                             <button type="button" class="btn btn-secondary" onClick={() => {
                                 handeDeletePlant(deleteId);
                                 closeDeleteWarning();
-                            }}>{t("adminPage.deleteBttn")}</button>
+                            }}>{t("employeePage.deleteBttn")}</button>
 
-                            <button type="button" className="btn btn-success" onClick={closeDeleteWarning}>{t("adminPage.quitDelete")}</button>
+                            <button type="button" className="btn btn-success" onClick={closeDeleteWarning}>{t("employeePage.quitDelete")}</button>
                         </div>
 
                     </div>
