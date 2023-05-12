@@ -24,8 +24,7 @@ export default function UpdateUser({  onUserUpdated, id }){
                 const response = await httpClient.get(`http://localhost:8080/getUser/${id}`);
                 setUserData(response.data);
 
-                if (response.status === 200) {
-                }
+
             } catch (error) {
                 console.error(error);
 
