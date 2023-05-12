@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-    faChartSimple, faCode,
+    faChartSimple, faCircleExclamation, faCode,
     faFileCsv,
     faFileLines,
     faMagnifyingGlass,
@@ -29,7 +29,9 @@ export default function Employee(){
     const [filterValue, setFilterValue] = useState('');
     const [filterCriteria, setFilterCriteria] = useState('');
     const [selectedPlantId, setSelectedPlantId] = useState(null);
-
+    const[showWarningDelete, setShowWarningDelete] = useState(false);
+    const[deleteId, setDeleteId] = useState(null);
+    const[plantChanges, setPlantChanges] = useState(false);
 
     function handleItemClick(event) {
         setFilterCriteria(event.target.getAttribute('data-criteria'));
@@ -171,6 +173,16 @@ export default function Employee(){
             i18n.changeLanguage(storedLanguage);
         }
     }, []);
+
+
+    const handleDeleteClick = (userId) => {
+        setShowWarningDelete(true);
+        setDeleteId(userId);
+    };
+
+    const closeDeleteWarning = () => {
+        setShowWarningDelete(false);
+    }
 
     return(
         <I18nextProvider i18n={i18n}>
@@ -321,7 +333,7 @@ export default function Employee(){
                                         <FontAwesomeIcon icon={faPen}  style={{color: "white",}} onClick={() => openModalUpdate(plant.id)}/>
                                         &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                                         <FontAwesomeIcon icon={faTrash}
-                                                         onClick={() => handeDeletePlant(plant.id)}
+                                                         onClick={() => handleDeleteClick(plant.id)}
                                         />
                                     </td>
                                 </tr>
@@ -365,6 +377,23 @@ export default function Employee(){
                         </div>
                     </div>
                 </div>
+
+                {showWarningDelete ? (
+                    <div id="warningDelete">
+                        <FontAwesomeIcon icon={faCircleExclamation} style={{color: "#ff0000"}} size="2xl" />
+                        <p style={{marginTop: "5%"}}>{t("adminPage.deleteQuestion")} {deleteId} ?</p>
+
+                        <div id="warningBttns">
+                            <button type="button" class="btn btn-secondary" onClick={() => {
+                                handeDeletePlant(deleteId);
+                                closeDeleteWarning();
+                            }}>{t("adminPage.deleteBttn")}</button>
+
+                            <button type="button" className="btn btn-success" onClick={closeDeleteWarning}>{t("adminPage.quitDelete")}</button>
+                        </div>
+
+                    </div>
+                ) : null}
 
             </div>
 

@@ -9,6 +9,7 @@ export default function UpdateUser({  onUserUpdated, id }){
 
     const { t } = useTranslation();
     const [userData, setUserData] = useState({
+        id: "",
         name: '',
         password: '',
         role: '',
