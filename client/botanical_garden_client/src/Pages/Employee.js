@@ -342,23 +342,11 @@ export default function Employee(){
                     </table>
                 </div>
 
-                <div className="modal fade" id="addPlant" tabIndex="-1" aria-labelledby="addPlantLabel"
-                     aria-hidden="true">
-                    <div className="modal-dialog" style={{width: "fit-content"}}>
-                        <div className="modal-content">
-                            <div className="modal-header" >
-                                <h1 className="modal-title fs-5" id="exampleModalLabel">{t("employeePage.addPl")}</h1>
-                                <button type="button" className="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                            </div>
-                            <div className="modal-body">
+
 
                                 <AddPlant/>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+
 
                 <div className="modal fade" id="updatePlant" tabIndex="-1" aria-labelledby="updatePlantLabel"
                      aria-hidden="true">
