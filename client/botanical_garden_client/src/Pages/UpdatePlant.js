@@ -5,7 +5,7 @@ import i18n from "../i18n";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faCircleCheck, faCircleExclamation} from "@fortawesome/free-solid-svg-icons";
 
-export default function UpdatePlant({ id }) {
+export default function UpdatePlant({ id, onPlantUpdated }) {
 
     const { t } = useTranslation();
     const [plantData, setPlantData] = useState({
@@ -45,6 +45,7 @@ export default function UpdatePlant({ id }) {
             if (response.status === 200) {
                 setSuccess(true);
                 setShowMessageBox(true);
+                onPlantUpdated();
 
             } else {
                 setSuccess(false);

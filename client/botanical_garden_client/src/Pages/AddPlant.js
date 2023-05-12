@@ -6,7 +6,7 @@ import FormData from "form-data";
 import {I18nextProvider, useTranslation} from "react-i18next";
 import i18n from "../i18n";
 
-export default function AddPlant(){
+export default function AddPlant({ onPlantAdded }){
 
     const { t } = useTranslation();
     const[addPlantData, setAddPlantData] = useState({
@@ -44,6 +44,7 @@ export default function AddPlant(){
                 setAddPlantData({ name: "", type: "", species: "", carnivorous: "", zone: ""});
                 setSuccess(true);
                 setShowMessageBox(true);
+                onPlantAdded();
 
             } else {
                 setSuccess(false);

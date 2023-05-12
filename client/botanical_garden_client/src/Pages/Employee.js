@@ -53,6 +53,7 @@ export default function Employee(){
 
     useEffect( () =>{
         async function fetchAllPlants(){
+            setPlantChanges(false);
             try{
                 const response = await httpClient.get('http://localhost:8080/getPlants');
                 setPlants(response.data);
@@ -61,7 +62,11 @@ export default function Employee(){
             }
         }
         fetchAllPlants();
-    }, []);
+    }, [plantChanges]);
+
+    const handlePlantAddedOrUpdated = () => {
+        setPlantChanges(true);
+    };
 
 
     const handeDeletePlant = async (id) => {
@@ -342,9 +347,9 @@ export default function Employee(){
                     </table>
                 </div>
 
-                <AddPlant/>
+                <AddPlant onPlantAdded={handlePlantAddedOrUpdated}/>
 
-                <UpdatePlant id={selectedPlantId} />
+                <UpdatePlant id={selectedPlantId} onPlantUpdated={handlePlantAddedOrUpdated}/>
 
                 {showWarningDelete ? (
                     <div id="warningDelete">
