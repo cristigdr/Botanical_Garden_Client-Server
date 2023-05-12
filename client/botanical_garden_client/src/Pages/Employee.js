@@ -331,6 +331,7 @@ export default function Employee(){
                                             <img
                                                 id="tabImg"
                                                 src={`data:image/jpeg;base64, ${plant.image}`}
+                                                alt={"plant "}
                                             />
                                         )}
                                     </td>

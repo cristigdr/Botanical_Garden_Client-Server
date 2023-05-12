@@ -54,7 +54,5 @@ public class UserService {
         return this.userRepo.findByRole(role);
     }
 
-    public boolean checkIfUserExists(Long id, String name, String password, String role){
-        return this.userRepo.existsByIdAndUserAndPasswordAndRole(id, name, password, role);
-    }
+
 }
